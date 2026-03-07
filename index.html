@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ResearchRadar</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #060b14; color: #e2e8f0; font-family: monospace; }
+  header { padding: 24px 40px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 16px; }
+  h1 { font-size: 22px; color: #00ffe0; letter-spacing: 2px; }
+  .search-row { display: flex; gap: 10px; margin-left: auto; }
+  input { background: #0f172a; border: 1px solid #334155; color: #e2e8f0; padding: 10px 16px; border-radius: 6px; width: 280px; font-family: monospace; font-size: 14px; }
+  button { background: #00ffe0; color: #060b14; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; font-family: monospace; }
+  button:hover { background: #00ccb3; }
+  main { display: grid; grid-template-columns: 1fr 400px; height: calc(100vh - 73px); }
+  #graph-panel { position: relative; border-right: 1px solid #1e293b; }
+  #graph-panel svg { width: 100%; height: 100%; }
+  #sidebar { padding: 20px; overflow-y: auto; }
+  .label { font-size: 10px; color: #64748b; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+  .card.gap { border-left: 3px solid #ec4899; }
+  .score { font-size: 11px; color: #ec4899; font-weight: bold; margin-bottom: 6px; }
+  .hyp-title { font-size: 13px; color: #00ffe0; margin-bottom: 8px; }
+  .hyp-text { font-size: 12px; color: #94a3b8; line-height: 1.6; }
+  .pair { font-size: 10px; color: #475569; margin-bottom: 8px; }
+  .tag { display: inline-block; background: #1e293b; color: #7c3aed; font-size: 10px; padding: 2px 8px; border-radius: 4px; margin-right: 4px; margin-top: 6px; }
+  .loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #00ffe0; font-size: 14px; letter-spacing: 2px; }
+  .legend { position: absolute; bottom: 16px; left: 16px; font-size: 10px; color: #475569; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>⬡ RESEARCH RADAR</h1>
+  <div class="search-row">
+    <input id="query" value="federated learning" placeholder="Enter research domain..." />
+    <button onclick="runSearch()">ANALYZE →</button>
+  </div>
+</header>
+<main>
+  <div id="graph-panel">
+    <div class="loading" id="loading">ENTER A TOPIC AND CLICK ANALYZE</div>
+    <svg id="graph"></svg>
+    <div class="legend">
+      <span class="dot" style="background:#60a5fa"></span>Paper Node &nbsp;
+      <span class="dot" style="background:#334155"></span>Citation/Semantic Edge &nbsp;
+      <span class="dot" style="background:#ec4899"></span>Gap (Unexplored Connection)
+    </div>
+  </div>
+  <div id="sidebar">
+    <div class="label">Generated Hypotheses</div>
+    <div id="cards"><div style="color:#334155;font-size:12px">Run a search to see AI-generated research ideas.</div></div>
+  </div>
+</main>
+
+<script>
+async function runSearch() {
+  const query = document.getElementById("query").value.trim();
+  if (!query) return;
+  document.getElementById("loading").textContent = "FETCHING PAPERS...";
+  document.getElementById("graph").innerHTML = "";
+  document.getElementById("cards").innerHTML = '<div style="color:#00ffe0;font-size:12px;letter-spacing:1px">Generating hypotheses...</div>';
+
+  try {
+    const res = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    document.getElementById("loading").style.display = "none";
+    drawGraph(data.nodes, data.edges);
+    renderCards(data.hypotheses);
+  } catch(e) {
+    document.getElementById("loading").textContent = "⚠ API not running. Start: uvicorn api:app --reload";
+  }
+}
+
+function drawGraph(nodes, edges) {
+  const svg = d3.select("#graph");
+  const w = svg.node().parentElement.clientWidth;
+  const h = svg.node().parentElement.clientHeight;
+  svg.attr("viewBox", `0 0 ${w} ${h}`);
+
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(edges).id(d => d.id).distance(80))
+    .force("charge", d3.forceManyBody().strength(-120))
+    .force("center", d3.forceCenter(w/2, h/2));
+
+  const link = svg.append("g").selectAll("line").data(edges).enter().append("line")
+    .attr("stroke", d => d.gap ? "#ec4899" : "#1e3a5f")
+    .attr("stroke-width", d => d.gap ? 2.5 : 1)
+    .attr("stroke-dasharray", d => d.gap ? "5,4" : "none")
+    .attr("stroke-opacity", d => d.gap ? 1 : 0.5);
+
+  const node = svg.append("g").selectAll("circle").data(nodes).enter().append("circle")
+    .attr("r", 7).attr("fill", "#1e3a8a").attr("stroke", "#60a5fa").attr("stroke-width", 1.5)
+    .call(d3.drag()
+      .on("start", (e,d) => { if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on("drag", (e,d) => { d.fx=e.x; d.fy=e.y; })
+      .on("end", (e,d) => { if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+  node.append("title").text(d => d.title);
+
+  sim.on("tick", () => {
+    link.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
+    node.attr("cx",d=>d.x).attr("cy",d=>d.y);
+  });
+}
+
+function renderCards(hypotheses) {
+  const container = document.getElementById("cards");
+  if (!hypotheses || !hypotheses.length) {
+    container.innerHTML = '<div style="color:#475569;font-size:12px">No hypotheses generated. Check API logs.</div>';
+    return;
+  }
+  container.innerHTML = hypotheses.map(h => `
+    <div class="card gap">
+      <div class="score">⬡ NOVELTY SCORE: ${h.novelty_score}/100</div>
+      <div class="hyp-title">${h.title || "Research Hypothesis"}</div>
+      <div class="pair">📄 ${h.paper_a?.slice(0,45)}... ↔ ${h.paper_b?.slice(0,45)}...</div>
+      <div class="hyp-text">${h.hypothesis}</div>
+      <div style="margin-top:10px">
+        <div class="hyp-text" style="color:#64748b"><b style="color:#475569">Method:</b> ${h.method}</div>
+        <div class="hyp-text" style="color:#64748b;margin-top:4px"><b style="color:#475569">Impact:</b> ${h.impact}</div>
+      </div>
+      <span class="tag">cross-domain</span><span class="tag">unexplored</span>
+    </div>
+  `).join("");
+}
+</script>
+</body>
+</html>
