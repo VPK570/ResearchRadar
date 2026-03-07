@@ -1,6 +1,11 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import structlog
 import os
 from dotenv import load_dotenv
+
+from routes import auth, search, export, history, hypotheses
+from middleware.rate_limiter import RateLimiterMiddleware
 
 # Load environment variables from .env in project root
 load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env"))
@@ -15,34 +20,25 @@ structlog.configure(
 )
 logger = structlog.get_logger()
 
-# We need these imports after load_dotenv potentially
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from routes import auth, search, export, history, hypotheses
-from middleware.rate_limiter import RateLimiterMiddleware
-
 app = FastAPI(title="ResearchRadar API")
 
-# Simplified CORS for dev - no credentials needed for Header-based auth
+# Order of middleware: LAST added is FIRST to run on request.
+# CORS should be the outermost (last added) to catch all responses.
+app.add_middleware(RateLimiterMiddleware, requests_per_hour=50)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], 
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Temporarily disabled rate limiter for debugging
-# app.add_middleware(RateLimiterMiddleware, requests_per_hour=20)
 
 app.include_router(auth.router)
 app.include_router(search.router)
 app.include_router(export.router)
 app.include_router(history.router)
 app.include_router(hypotheses.router)
-
-
-
 
 @app.get("/")
 async def root():
@@ -52,5 +48,3 @@ async def root():
 async def health_check():
     logger.info("health_check_hit")
     return {"status": "ok"}
-
-
