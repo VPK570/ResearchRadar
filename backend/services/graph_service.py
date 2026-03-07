@@ -1,75 +1,65 @@
 import networkx as nx
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+import asyncio
+import structlog
 
-def build_graph(papers, embeddings, ids, paper_map):
+logger = structlog.get_logger()
+
+def _build_graph_sync(papers: list[dict], sim_threshold: float):
+    if not papers:
+        return {"nodes": [], "edges": []}
+
     G = nx.Graph()
+    paper_map = {}
     
-    # Add nodes
+    # 1. Add nodes
     for p in papers:
-        G.add_node(
-            p["paperId"], 
-            title=p["title"][:40], 
-            year=p.get("year", 0)
-        )
-        
-    # Add citation edges
-    for p in papers:
-        # CRITICAL: use (p.get("references") or [])
-        refs = p.get("references") or []
-        for ref in refs:
-            ref_id = ref.get("paperId")
-            if ref_id in paper_map:
-                G.add_edge(p["paperId"], ref_id)
-                
-    # Semantic edges
-    sim_matrix = cosine_similarity(embeddings)
-    n = len(ids)
-    for i in range(n):
-        for j in range(i + 1, n):
-            if sim_matrix[i][j] > 0.74:
-                if not G.has_edge(ids[i], ids[j]):
-                    G.add_edge(ids[i], ids[j], weight=float(sim_matrix[i][j]))
-                    
-    return G, sim_matrix
+        paper_id = p.get('paperId')
+        paper_map[paper_id] = p
+        G.add_node(paper_id, title=p.get('title'), year=p.get('year', 0))
 
-def detect_gaps(G, ids, paper_map, sim_matrix):
-    gaps = []
-    n = len(ids)
+    # 2. Add explicit citation edges
+    for p in papers:
+        paper_id = p.get('paperId')
+        for ref in p.get('references', []):
+            ref_id = ref.get('paperId')
+            if ref_id in paper_map:
+                G.add_edge(paper_id, ref_id, type="citation", weight=1.0)
+
+    # 3. Add semantic edges
+    embeddings = [p.get('embedding') for p in papers]
+    # Filter out papers without embeddings
+    valid_indices = [i for i, emb in enumerate(embeddings) if emb is not None]
     
-    for i in range(n):
-        for j in range(i + 1, n):
-            a, b = ids[i], ids[j]
-            
-            # Skip if edge already exists
-            if G.has_edge(a, b):
-                continue
-                
-            # Shared neighbors
-            shared_neighbors = list(nx.common_neighbors(G, a, b))
-            shared_count = len(shared_neighbors)
-            
-            if shared_count < 2:
-                continue
-                
-            sim = sim_matrix[i][j]
-            
-            # Recency
-            year_a = paper_map[a].get("year") or 2000
-            year_b = paper_map[b].get("year") or 2000
-            recency = (min(year_a, year_b) - 2000) / 25
-            
-            # Score
-            score = round(shared_count * 0.35 + float(sim) * 0.5 + recency * 0.15, 3)
-            
-            gaps.append({
-                "a": a,
-                "b": b,
-                "shared": shared_count,
-                "sim": float(sim),
-                "score": score
-            })
-            
-    # Sort by score descending
-    gaps.sort(key=lambda x: x["score"], reverse=True)
-    return gaps[:3]
+    if len(valid_indices) > 1:
+        valid_embeddings = np.array([embeddings[i] for i in valid_indices])
+        sim_matrix = cosine_similarity(valid_embeddings)
+        
+        for i in range(len(valid_indices)):
+            for j in range(i + 1, len(valid_indices)):
+                sim = float(sim_matrix[i][j])
+                if sim >= sim_threshold:
+                    p1_id = papers[valid_indices[i]]['paperId']
+                    p2_id = papers[valid_indices[j]]['paperId']
+                    if not G.has_edge(p1_id, p2_id):
+                        G.add_edge(p1_id, p2_id, type="semantic", weight=sim)
+
+    # Note: Isolated component handling
+    # If a node has degree 0, it means it's totally disconnected.
+    # While that's fine for visualizing, it usually means it's not a strong part of the query cluster.
+    # For now, we leave them in as visual indicators of scattered research.
+
+    nodes_formatted = [{"id": n, **d} for n, d in G.nodes(data=True)]
+    edges_formatted = [{"source": u, "target": v, **d} for u, v, d in G.edges(data=True)]
+    
+    return {"nodes": nodes_formatted, "edges": edges_formatted, "paper_map": paper_map}
+
+async def build_knowledge_graph_async(papers: list[dict], sim_threshold: float = 0.55):
+    logger.info("building_knowledge_graph", num_papers=len(papers), threshold=sim_threshold)
+    
+    loop = asyncio.get_running_loop()
+    graph_data = await loop.run_in_executor(None, _build_graph_sync, papers, sim_threshold)
+    
+    logger.info("knowledge_graph_built", nodes=len(graph_data['nodes']), edges=len(graph_data['edges']))
+    return graph_data

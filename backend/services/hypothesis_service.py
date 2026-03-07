@@ -1,60 +1,77 @@
-from google import genai as google_genai
-from dotenv import load_dotenv
 import os
-import json
+import asyncio
+from google import genai
+from pydantic import BaseModel
+from typing import List
+import structlog
 
-load_dotenv()
+logger = structlog.get_logger()
 
-def generate_hypotheses(gaps, paper_map):
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        print("WARNING: GEMINI_API_KEY not found in environment.")
+# Response Schema for Gemini
+class Hypothesis(BaseModel):
+    title: str
+    hypothesis: str
+    method: str
+    impact: str
+    novelty_score: int
+
+class HypothesisList(BaseModel):
+    hypotheses: List[Hypothesis]
+
+async def generate_hypotheses_async(gaps: List[dict]):
+    if not gaps:
         return []
         
-    client = google_genai.Client(api_key=api_key)
-    hypotheses = []
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        logger.error("gemini_api_key_missing")
+        return []
+        
+    client = genai.Client(api_key=api_key)
     
-    for gap in gaps:
-        try:
-            pa = paper_map[gap["a"]]
-            pb = paper_map[gap["b"]]
+    # Prepare the prompt
+    prompt_context = "You are a senior research scientist. For the following research gaps (pairs of papers that are semantically related but have no citations between them), generate a novel research hypothesis that bridges them.\n\n"
+    
+    for i, gap in enumerate(gaps):
+        paper_a = gap['paper_a']
+        paper_b = gap['paper_b']
+        prompt_context += f"Gap {i+1}:\n"
+        prompt_context += f"Paper A: {paper_a.get('title')}\nAbstract A: {paper_a.get('abstract')}\n"
+        prompt_context += f"Paper B: {paper_b.get('title')}\nAbstract B: {paper_b.get('abstract')}\n\n"
+        
+    prompt_context += "Generate a title, a detailed hypothesis, a proposed testing method, a potential impact statement, and a novelty score (1-100) for each gap."
+
+    try:
+        logger.info("generating_hypotheses_with_gemini", num_gaps=len(gaps))
+        
+        # Use structured output
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt_context,
+            config={
+                'response_mime_type': 'application/json',
+                'response_schema': HypothesisList,
+            }
+        )
+        
+        # Parse result
+        if response and response.parsed:
+            result = response.parsed.hypotheses
+            # Attach paper info back
+            for i, hyp in enumerate(result):
+                if i < len(gaps):
+                    # Convert pydantic to dict
+                    hyp_dict = hyp.model_dump()
+                    hyp_dict['paper_a'] = gaps[i]['paper_a'].get('title')
+                    hyp_dict['paper_b'] = gaps[i]['paper_b'].get('title')
+                    result[i] = hyp_dict
             
-            prompt = f"""
-            Paper A: "{pa['title']}" — {pa.get('abstract','')[:200]}
-            Paper B: "{pb['title']}" — {pb.get('abstract','')[:200]}
-            These two research areas have never been directly combined according to my analysis of citations and semantic similarity.
-            Give 1 research hypothesis that bridges these two papers as JSON:
-            {{
-                "title": "Short Descriptive Title",
-                "hypothesis": "Combining X and Y may lead to...",
-                "method": "Briefly describe a possible methodology",
-                "impact": "Potential impact on the field"
-            }}
-            JSON only. No extra text. No markdown.
-            """
+            logger.info("hypotheses_generated_successfully", count=len(result))
+            return result
             
-            res = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=prompt
-            )
-            
-            raw = res.text.strip().replace("```json","").replace("```","")
-            # Minimal parsing safety
-            parsed = json.loads(raw)
-            
-            hypotheses.append({
-                "paper_a": pa["title"],
-                "paper_b": pb["title"],
-                "novelty_score": min(99, int(gap["score"] * 100)),
-                "title": parsed.get("title", "Novel Connection"),
-                "hypothesis": parsed.get("hypothesis", ""),
-                "method": parsed.get("method", ""),
-                "impact": parsed.get("impact", "")
-            })
-            
-        except Exception as e:
-            print(f"Error generating hypothesis for gap {gap}: {str(e)}")
-            if 'res' in locals():
-                print(f"Raw response: {res.text}")
-                
-    return hypotheses
+        logger.warning("gemini_returned_empty_parsed_response")
+        return []
+        
+    except Exception as e:
+        logger.exception("gemini_generation_failed", error=str(e))
+        return []

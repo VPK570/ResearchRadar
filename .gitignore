@@ -37,3 +37,8 @@ backend/services/__pycache__/
 backend/__pycache__/
 *.log
 .DS_Store
+researchradar.db
+node_modules/
+dist/
+.env
+*.local
