@@ -16,11 +16,11 @@
 
 ## 🛠️ Tech Stack
 
--   **Backend**: Flask (serving both API and UI)
--   **AI/ML**: `sentence-transformers`, `scikit-learn` (cosine similarity)
+-   **Backend**: FastAPI (Async, Pydantic, SQLAlchemy)
+-   **AI/ML**: `sentence-transformers` (Fallback to Random in local env due to segfaults), `numpy`
 -   **Graph Analysis**: `networkx`
--   **Hypothesis Generation**: Google Gemini 2.5-Flash (via `google-genai` SDK)
--   **Frontend**: D3.js (Interactive Graph), Vanilla JS, CSS Glassmorphism
+-   **Hypothesis Generation**: Google Gemini (via `google-genai` SDK)
+-   **Frontend**: React (Vite), D3.js
 
 ---
 
@@ -29,18 +29,12 @@
 ```text
 ResearchRadar/
 ├── .env                # API Keys (Gemini)
-├── backend/            # Flask Application Root
-│   ├── main.py         # App Entry Point & Routes
-│   ├── services/       # Modular Logic
-│   │   ├── paper_service.py
-│   │   ├── embedding_service.py
-│   │   ├── graph_service.py
-│   │   └── hypothesis_service.py
-│   ├── templates/      # Main HTML UI
-│   │   └── index.html
-│   └── static/         # Frontend Assets
-│       ├── css/
-│       └── js/
+├── run.py              # Root Execution Script
+├── backend/            # FastAPI Application Root
+│   ├── main.py         # App Entry Point & Routing
+│   ├── services/       # Core Logic
+│   └── db/             # Database Connection
+├── frontend/           # React Application
 └── README.md           # This file
 ```
 
@@ -49,14 +43,11 @@ ResearchRadar/
 ## ⚙️ Installation & Setup
 
 ### 1. Requirements
-Ensure you have **Python 3.11** (recommended via conda).
+Ensure you have **Python 3.11+**.
 
 ```bash
-# Activate your environment
-conda activate research-radar
-
 # Install dependencies
-pip install requests sentence-transformers networkx numpy scikit-learn google-genai flask flask-cors python-dotenv
+pip install sqlalchemy tenacity aiosqlite python-jose[cryptography] passlib[bcrypt] structlog fastapi uvicorn google-genai
 ```
 
 ### 2. Configure Gemini API
@@ -64,19 +55,17 @@ Create a `.env` file in the project root:
 ```env
 GEMINI_API_KEY=your_actual_key_here
 ```
-> [!IMPORTANT]
-> Get your key from [Google AI Studio](https://aistudio.google.com/).
 
 ### 3. Run the Application
-Navigate to the `backend/` folder and start the server:
+Start the backend from the root:
 ```bash
-cd backend
-python main.py
+python run.py
 ```
 
 ### 4. Access the UI
 Open your browser and visit:
-👉 **`http://127.0.0.1:8000`**
+👉 **`http://localhost:8000/docs`** (API Documentation)
+👉 **`http://localhost:5173`** (Frontend dev server - run `npm install && npm run dev` in `frontend/`)
 
 ---
 

@@ -19,6 +19,10 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
         if not (request.url.path.startswith("/api/search") or request.url.path.startswith("/api/export")):
             return await call_next(request)
 
+        # Skip rate limit for preflight OPTIONS requests
+        if request.method == "OPTIONS":
+            return await call_next(request)
+
         # GET status polling shouldn't be rate limited as strictly
         if request.method == "GET" and "status" in request.url.path:
             return await call_next(request)

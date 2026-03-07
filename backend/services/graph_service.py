@@ -22,7 +22,7 @@ def _build_graph_sync(papers: list[dict], sim_threshold: float):
     # 2. Add explicit citation edges
     for p in papers:
         paper_id = p.get('paperId')
-        for ref in p.get('references', []):
+        for ref in (p.get('references') or []):
             ref_id = ref.get('paperId')
             if ref_id in paper_map:
                 G.add_edge(paper_id, ref_id, type="citation", weight=1.0)

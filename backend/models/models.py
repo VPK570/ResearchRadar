@@ -30,6 +30,7 @@ class Search(Base):
     # Optional parameters
     config_num_papers = Column(Integer, default=50)
     config_num_gaps = Column(Integer, default=5)
+    config_sim_threshold = Column(Float, default=0.55)
     # Result storage
     results = Column(JSON, nullable=True)
     
