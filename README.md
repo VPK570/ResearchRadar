@@ -4,79 +4,75 @@
 
 ---
 
-## 🚀 How It Works
+## 🚀 Quick Start Guide
 
-1.  **Search**: Fetches real academic papers from the **Semantic Scholar API** based on your query.
-2.  **Embeddings**: Generates semantic vectors for titles and abstracts using `sentence-transformers` (`all-MiniLM-L6-v2`).
-3.  **Knowledge Graph**: Builds a `networkx` graph where nodes represent papers and edges represent citations or high semantic similarity.
-4.  **Gap Detection**: Identifies pairs of papers that are semantically related but have never cited each other (sharing at least 2 common neighbors).
-5.  **AI Hypothesis**: Sends these "gaps" to **Google Gemini 2.5-Flash** to generate novel research ideas, complete with methodology and potential impact.
+Follow these very simple steps to get the application running from scratch on your computer.
 
----
+### Prerequisites
+Make sure you have installed:
+1.  **Python 3.11+** (or Miniconda/Anaconda)
+2.  **Node.js** (for running the React frontend)
+3.  **Git**
 
-## 🛠️ Tech Stack
-
--   **Backend**: FastAPI (Async, Pydantic, SQLAlchemy)
--   **AI/ML**: `sentence-transformers` (Fallback to Random in local env due to segfaults), `numpy`
--   **Graph Analysis**: `networkx`
--   **Hypothesis Generation**: Google Gemini (via `google-genai` SDK)
--   **Frontend**: React (Vite), D3.js
-
----
-
-## 📁 Project Structure
-
-```text
-ResearchRadar/
-├── .env                # API Keys (Gemini)
-├── run.py              # Root Execution Script
-├── backend/            # FastAPI Application Root
-│   ├── main.py         # App Entry Point & Routing
-│   ├── services/       # Core Logic
-│   └── db/             # Database Connection
-├── frontend/           # React Application
-└── README.md           # This file
+### Step 1: Clone the Repository
+Open your terminal and clone the project:
+```bash
+git clone <your-repository-url>
+cd ResearchRadar
 ```
 
----
-
-## ⚙️ Installation & Setup
-
-### 1. Requirements
-Ensure you have **Python 3.11+**.
+### Step 2: Set Up the Backend
+We recommend using a conda virtual environment so your global python installation stays clean.
 
 ```bash
-# Install dependencies
-pip install sqlalchemy tenacity aiosqlite python-jose[cryptography] passlib[bcrypt] structlog fastapi uvicorn google-genai
-```
+# 1. Create and activate a conda environment
+conda create -n research-radar python=3.11 -y
+conda activate research-radar
 
-### 2. Configure Gemini API
-Create a `.env` file in the project root:
-```env
-GEMINI_API_KEY=your_actual_key_here
-```
+# 2. Install the necessary Python packages
+pip install -r requirements.txt
 
-### 3. Run the Application
-Start the backend from the root:
-```bash
+# 3. Create a .env file and add your Gemini API Key. 
+# You can get a free key at: https://aistudio.google.com/app/apikey
+echo "GEMINI_API_KEY=your_actual_api_key_here" > .env
+
+# 4. Start the backend server!
 python run.py
 ```
+*The backend will be running at `http://localhost:8000`.*
 
-### 4. Access the UI
-Open your browser and visit:
-👉 **`http://localhost:8000/docs`** (API Documentation)
-👉 **`http://localhost:5173`** (Frontend dev server - run `npm install && npm run dev` in `frontend/`)
+### Step 3: Set Up the Frontend
+Open a **new terminal window** (keep the backend running in the first one) and navigate to the `frontend` folder:
+
+```bash
+cd ResearchRadar/frontend
+
+# 1. Install frontend dependencies
+npm install
+
+# 2. Start the React development server
+npm run dev
+```
+*The frontend will be running at `http://localhost:5173`. Open this link in your browser!*
 
 ---
 
-## 💡 Usage Tips
+## 🧪 Testing Locally (Mock Data Mode)
 
--   **Search Queries**: Use specific research domains like *"transformer neural networks"* or *"federated learning"* for best results.
--   **Interactive Graph**: Drag nodes to reorganize the view. Hover over blue nodes to see paper titles.
--   **Pink Lines**: These represent the **gaps** — the unexplored connections the AI is analyzing.
--   **Hypothesis Cards**: Novelty scores are calculated based on shared local density and semantic similarity.
+If you don't want to use live APIs or if you are hitting rate limits, you can download mock data locally!
+
+1. Stop the backend server temporarily (`Ctrl+C`).
+2. Run the mock data script:
+   ```bash
+   python scripts/download_mock_data.py --topic "artificial intelligence" --limit 50
+   ```
+3. Restart the backend (`python run.py`).
+4. Go to the UI and search for exactly "**artificial intelligence**". It will instantly load your local data!
 
 ---
 
-## ⚖️ License
-This project is open-source and intended for research exploration.
+## 🛠️ Project Structure
+- `backend/` - FastAPI Python backend that handles graphing and AI generation.
+- `frontend/` - React application with D3.js visualizer.
+- `scripts/` - Helpful utilities like the mock data downloader.
+- `run.py` - Main execution script for the backend.
