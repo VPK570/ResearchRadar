@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResearchRadar | AI Discovery Tool</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">⬡ RESEARCH RADAR</div>
+        <div class="search-container">
+            <input type="text" id="query-input" placeholder="e.g. federated learning" value="federated learning">
+            <button id="search-btn">ANALYZE →</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="graph-panel">
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p id="loader-text">FETCHING PAPERS...</p>
+            </div>
+            <svg id="graph-svg"></svg>
+            <div class="legend">
+                <div class="legend-item"><span class="dot paper"></span> Paper Node</div>
+                <div class="legend-item"><span class="dot edge"></span> Citation/Semantic Edge</div>
+                <div class="legend-item"><span class="dot gap"></span> Gap (Unexplored Connection)</div>
+            </div>
+            <div id="api-error" class="hidden">
+                ⚠ API not running. Start: <code>python main.py</code>
+            </div>
+        </section>
+
+        <aside id="sidebar">
+            <h3>GENERATED HYPOTHESES</h3>
+            <div id="hypotheses-container">
+                <p class="empty-msg">Run a search to see AI-generated research ideas.</p>
+            </div>
+        </aside>
+    </main>
+
+    <script type="module" src="/static/js/ui.js"></script>
+</body>
+
+</html>
