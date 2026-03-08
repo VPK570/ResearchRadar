@@ -111,8 +111,11 @@ export default function ResultsPage() {
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10">
               <Loader2 className="w-10 h-10 text-sky-500 animate-spin opacity-40" />
-              <p className="text-slate-500 font-medium animate-pulse">
-                {searchData?.status === 'failed' ? 'Encountered an error' : 'Analyzing literature...'}
+              <p className="text-slate-500 font-medium animate-pulse text-center">
+                {searchData?.status === 'failed' ? 'Encountered an error' : 
+                 searchData?.status === 'fetching' ? 'Searching literature archive...' :
+                 searchData?.status === 'building' ? `Discovered ${searchData.paper_count || 0} relevant papers. Constructing graph...` :
+                 'Synthesizing knowledge gaps...'}
               </p>
             </div>
           )}

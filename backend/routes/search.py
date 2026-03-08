@@ -26,6 +26,10 @@ class SearchStatusResponse(BaseModel):
     paper_count: int
     results: Optional[dict] = None
 
+    class Config:
+        from_attributes = True
+
+
 @router.post("/", response_model=SearchStatusResponse)
 async def create_search(
     req: SearchRequest, 

@@ -19,6 +19,10 @@ class HistoryResponse(BaseModel):
     paper_count: int
     created_at: datetime
 
+    class Config:
+        from_attributes = True
+
+
 @router.get("/history", response_model=List[HistoryResponse])
 async def get_history(
     db: AsyncSession = Depends(get_db),

@@ -1,0 +1,43 @@
+[
+  {
+    "paperId": "mock-p1",
+    "title": "BERT-based Named Entity Recognition for Clinical Electronic Health Records",
+    "abstract": "Electronic Health Records (EHRs) contain vast amounts of unstructured clinical information. We apply BERT (Bidirectional Encoder Representations from Transformers) to the task of Named Entity Recognition (NER) to identify medications, dosages, and patient symptoms. Our results show that domain-specific pre-training on clinical corpora significantly outperforms generic language models.",
+    "year": 2021,
+    "references": []
+  },
+  {
+    "paperId": "mock-p2",
+    "title": "Ethical Implications of Large Language Models in Patient Communication",
+    "abstract": "As LLMs are integrated into patient-facing interfaces, concerns regarding bias, hallucinations, and privacy become paramount. This study surveys the current landscape of ethical guidelines for healthcare NLP and identifies a lack of consensus on the responsible disclosure of AI-generated advice in clinical settings.",
+    "year": 2022,
+    "references": []
+  },
+  {
+    "paperId": "mock-p3",
+    "title": "Clinical-T5: A Text-to-Text Transfer Transformer for Medical Synthesis",
+    "abstract": "We introduce Clinical-T5, a model designed to summarize complex clinical notes into patient-friendly summaries. By using a text-to-text framework, we demonstrate superior performance in preserving clinical accuracy while increasing readability scores for non-professional readers.",
+    "year": 2023,
+    "references": [
+        {"paperId": "mock-p1"}
+    ]
+  },
+  {
+    "paperId": "mock-p4",
+    "title": "Knowledge Graph Construction from Unstructured EHR Data",
+    "abstract": "Structuring clinical data is essential for cross-institutional research. We propose a pipeline for building knowledge graphs using relationship extraction from biomedical literature and clinical notes. This allows for automated inference of disease-symptom relationships that are often missed in traditional database schemas.",
+    "year": 2022,
+    "references": [
+        {"paperId": "mock-p1"}
+    ]
+  },
+  {
+    "paperId": "mock-p5",
+    "title": "Federated Learning for Privacy-Preserving Clinical NLP",
+    "abstract": "Sharing medical data is restricted by HIPPA regulations. Federated learning allows models to be trained across multiple hospitals without moving sensitive patient data. Our approach uses differential privacy to further secure the gradients of Clinical-BERT models during the aggregation process.",
+    "year": 2023,
+    "references": [
+        {"paperId": "mock-p1"}
+    ]
+  }
+]

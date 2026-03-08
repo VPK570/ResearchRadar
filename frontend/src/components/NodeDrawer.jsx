@@ -23,14 +23,25 @@ export default function NodeDrawer({ node, onClose }) {
                     <Calendar size={14} className="text-sky-500" />
                     {node.year || 'N/A'}
                 </div>
-                {node.venue && (
-                    <div className="flex items-center gap-1.5 bg-white/5 px-2 py-1 rounded">
-                        <Quote size={14} className="text-pink-500" />
-                        {node.venue}
-                    </div>
-                )}
+                <div className="flex items-center gap-1.5 bg-white/5 px-2 py-1 rounded">
+                    <Quote size={14} className="text-pink-500" />
+                    {node.citationCount || 0} Citations
+                </div>
             </div>
         </div>
+
+        {node.authors && node.authors.length > 0 && (
+          <div className="space-y-3">
+              <h3 className="text-xs font-black uppercase tracking-widest text-slate-600">Authors</h3>
+              <div className="flex flex-wrap gap-2">
+                  {node.authors.map((author, i) => (
+                      <span key={i} className="text-xs text-slate-400 bg-white/5 px-2 py-1 rounded-lg">
+                          {author}
+                      </span>
+                  ))}
+              </div>
+          </div>
+        )}
 
         <div className="space-y-3">
              <h3 className="text-xs font-black uppercase tracking-widest text-slate-600">Abstract</h3>

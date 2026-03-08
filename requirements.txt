@@ -11,5 +11,8 @@ httpx
 tenacity
 networkx
 numpy
-flask-cors
-watchfiles
+sentence-transformers
+pandas
+reportlab
+scikit-learn
+watchingfiles
