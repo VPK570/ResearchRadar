@@ -3,15 +3,44 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from pydantic import BaseModel
 from typing import Optional
+import json
 
 from db.database import get_db
 from models.models import Search, User
 from middleware.auth_middleware import get_current_user_optional, get_current_user
 from worker import run_search_pipeline
+from services.hypothesis_service import generate_hypotheses_async
 import structlog
+from google import genai
+import os
 
 logger = structlog.get_logger()
 router = APIRouter(prefix="/api/search", tags=["search"])
+
+@router.post("/paper/summary")
+async def get_paper_summary(paper_data: dict):
+    """ Feature 9: Smart Paper Summaries """
+    api_key = os.getenv("GEMINI_API_KEY")
+    client = genai.Client(api_key=api_key)
+    
+    prompt = f"""Given this research paper:
+    Title: {paper_data.get('title')}
+    Abstract: {paper_data.get('abstract')}
+    
+    Generate a structured summary as valid JSON with exactly three fields:
+    - problem: one sentence
+    - method: one sentence
+    - contribution: one sentence with a concrete result if available"""
+    
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt,
+            config={'response_mime_type': 'application/json'}
+        )
+        return json.loads(response.text)
+    except Exception as e:
+        return {"problem": "Error generating summary.", "method": str(e), "contribution": "N/A"}
 
 class SearchRequest(BaseModel):
     query: str

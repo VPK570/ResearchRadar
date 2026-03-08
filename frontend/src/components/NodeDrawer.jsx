@@ -1,7 +1,33 @@
 import React from 'react';
-import { X, ExternalLink, Calendar, BookOpen, Quote } from 'lucide-react';
+import { X, ExternalLink, Calendar, BookOpen, Quote, Activity, Loader2 } from 'lucide-react';
+import client from '../api/client';
 
 export default function NodeDrawer({ node, onClose }) {
+  const [summary, setSummary] = React.useState(null);
+  const [loadingSummary, setLoadingSummary] = React.useState(false);
+
+  React.useEffect(() => {
+    if (node && node.abstract) {
+      setLoadingSummary(true);
+      setSummary(null);
+      // Simple fetch for summary
+      const fetchSummary = async () => {
+        try {
+          const resp = await client.post('/api/search/paper/summary', {
+            title: node.title,
+            abstract: node.abstract
+          });
+          setSummary(resp.data);
+        } catch (e) {
+          console.error(e);
+        } finally {
+          setLoadingSummary(false);
+        }
+      };
+      fetchSummary();
+    }
+  }, [node?.id]);
+
   if (!node) return null;
 
   return (
@@ -28,6 +54,36 @@ export default function NodeDrawer({ node, onClose }) {
                     {node.citationCount || 0} Citations
                 </div>
             </div>
+        </div>
+
+        {/* Feature 9: Smart Paper Summaries */}
+        <div className="space-y-4 bg-white/2 p-4 rounded-xl border border-white/5 shadow-inner">
+             <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 flex items-center gap-2">
+                 <Activity size={12} className="text-sky-500" /> AI Research Insight
+             </h3>
+             {loadingSummary ? (
+                 <div className="flex items-center gap-3 py-2">
+                     <Loader2 className="animate-spin text-sky-500" size={16} />
+                     <span className="text-xs text-slate-500 font-medium">Analyzing core contribution...</span>
+                 </div>
+             ) : summary ? (
+                 <div className="space-y-3">
+                    <div className="space-y-1">
+                        <span className="text-[9px] font-black text-slate-500 uppercase">Problem</span>
+                        <p className="text-xs text-slate-300 leading-relaxed italic">"{summary.problem}"</p>
+                    </div>
+                    <div className="space-y-1">
+                        <span className="text-[9px] font-black text-slate-500 uppercase">Method</span>
+                        <p className="text-xs text-slate-300 leading-relaxed italic">"{summary.method}"</p>
+                    </div>
+                    <div className="space-y-1">
+                        <span className="text-[9px] font-black text-slate-500 uppercase">Contribution</span>
+                        <p className="text-xs text-emerald-400/80 leading-relaxed font-bold">"{summary.contribution}"</p>
+                    </div>
+                 </div>
+             ) : (
+                 <p className="text-[10px] text-slate-500 italic">Select a paper to generate an automated insight.</p>
+             )}
         </div>
 
         {node.authors && node.authors.length > 0 && (

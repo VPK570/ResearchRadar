@@ -132,15 +132,49 @@ export default function ResultsPage() {
 
         {/* Sidebar */}
         <div className="w-[420px] border-l border-white/5 bg-slate-900/80 backdrop-blur-xl flex flex-col z-20">
-          <div className="p-4 border-b border-white/5 flex items-center justify-between">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400">Synthesis Engine</h2>
-            {searchData?.paper_count > 0 && (
-                <span className="text-[10px] bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded-full font-bold">
-                    {searchData.paper_count} PAPERS
-                </span>
+          <div className="p-4 border-b border-white/5 flex items-center justify-between bg-white/2">
+            <div>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-1">Synthesis Engine</h2>
+                <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+                    <span className="text-xs font-bold text-slate-300">Active Pipeline</span>
+                </div>
+            </div>
+            {searchData?.results?.intelligence?.freshness && (
+                <div className="text-right">
+                    <span className="block text-[9px] font-bold text-sky-500 uppercase tracking-tighter">
+                        {searchData.results.intelligence.freshness.freshness}
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-medium">
+                        Avg Age: {searchData.results.intelligence.freshness.avg_age}y
+                    </span>
+                </div>
             )}
           </div>
-          <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-4 custom-scrollbar space-y-8">
+            {/* Feature 8: Traceability Panel (Mini version) */}
+            {searchData?.status === 'completed' && (
+                <div className="bg-sky-500/5 border border-sky-500/10 rounded-xl p-4">
+                    <h3 className="text-[10px] font-black uppercase tracking-widest text-sky-500 mb-3">Reasoning Chain</h3>
+                    <div className="space-y-3 relative">
+                        <div className="absolute left-1.5 top-2 bottom-2 w-px bg-sky-500/20"></div>
+                        {[
+                            { step: 'Discovery', label: `${searchData.paper_count} papers indexed` },
+                            { step: 'Topology', label: `${searchData.results.intelligence.gap_count} gaps found` },
+                            { step: 'Synthesis', label: 'Gemini 2.0 Brain Active' }
+                        ].map((s, idx) => (
+                            <div key={idx} className="flex items-center gap-4 pl-4 relative">
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-sky-500 bg-slate-900 z-10"></div>
+                                <div>
+                                    <div className="text-[9px] font-black text-slate-500 uppercase">{s.step}</div>
+                                    <div className="text-[11px] font-bold text-slate-300">{s.label}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             <HypothesisPanel 
                 hypotheses={searchData?.results?.hypotheses} 
                 loading={polling && searchData?.status !== 'hypotheses'} 

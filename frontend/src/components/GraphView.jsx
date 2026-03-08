@@ -54,10 +54,18 @@ export default function GraphView({ data, loading, onNodeClick }) {
     // Draw Node
     ctx.beginPath();
     ctx.arc(node.x, node.y, 4, 0, 2 * Math.PI, false);
-    ctx.fillStyle = '#f8fafc'; // slate-50
+    
+    // Feature 6: Literature Density Heatmap (Blue to Red)
+    // Blue (.density=1) -> Red (.density=0.1)
+    const density = node.density || 0.5;
+    const r = Math.floor(255 * (1 - density));
+    const g = Math.floor(180 * density);
+    const b = Math.floor(255 * density);
+    ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+    
     ctx.fill();
     ctx.lineWidth = 1;
-    ctx.strokeStyle = '#0f172a'; // bg base
+    ctx.strokeStyle = 'rgba(255,255,255,0.2)'; // Subtle border
     ctx.stroke();
 
     // Node interactions - hover text

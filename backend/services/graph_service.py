@@ -45,10 +45,12 @@ def _build_graph_sync(papers: list[dict], sim_threshold: float):
                     if not G.has_edge(p1_id, p2_id):
                         G.add_edge(p1_id, p2_id, type="semantic", weight=sim)
 
-    # Note: Isolated component handling
-    # If a node has degree 0, it means it's totally disconnected.
-    # While that's fine for visualizing, it usually means it's not a strong part of the query cluster.
-    # For now, we leave them in as visual indicators of scattered research.
+    # 4. Feature 6: Literature Density Heatmap
+    # Group by 'fake' clusters for the heatmap (shared connectivity)
+    # For a simple implementation, we use the node's degree relative to others in the graph
+    max_degree = max([G.degree(n) for n in G.nodes()] + [1])
+    for n in G.nodes():
+        G.nodes[n]['density'] = G.degree(n) / max_degree
 
     nodes_formatted = [{"id": n, **d} for n, d in G.nodes(data=True)]
     edges_formatted = [{"source": u, "target": v, **d} for u, v, d in G.edges(data=True)]

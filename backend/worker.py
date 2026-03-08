@@ -56,7 +56,13 @@ async def run_search_pipeline(search_id: int):
             search.status = "hypotheses"
             await db.commit()
             
-            hypotheses = await generate_hypotheses_async(gaps)
+            # Pass all embeddings for Novelty Scoring (Feature 1)
+            all_embeddings = [p['embedding'] for p in papers_with_embs if p.get('embedding')]
+            hypotheses = await generate_hypotheses_async(gaps, corpus_embeddings=all_embeddings)
+            
+            # Feature 7: Freshness Metrics
+            from services.paper_service import get_freshness_metrics
+            freshness = get_freshness_metrics(papers_with_embs)
             
             # Merge gaps into edges for visualization
             all_edges = graph_data['edges'][:]
@@ -65,22 +71,29 @@ async def run_search_pipeline(search_id: int):
                     "source": gap["source"],
                     "target": gap["target"],
                     "gap": True,
-                    "score": gap["score"]
+                    "score": gap["score"],
+                    "confidence": gap.get("confidence", 0.5),
+                    "separation": gap.get("separation", "Medium")
                 })
             
             # 5. Completed
             search.status = "completed"
             search.completed_at = datetime.utcnow()
             
-            # Store final results in JSON column
+            # Store final results in JSON column with Intelligence Layer data
             search.results = {
                 "nodes": graph_data['nodes'],
                 "edges": all_edges,
-                "hypotheses": hypotheses
+                "hypotheses": hypotheses,
+                "intelligence": {
+                    "freshness": freshness,
+                    "gap_count": len(gaps),
+                    "queries": search.query
+                }
             }
             
             await db.commit()
-            logger.info("pipeline_completed", search_id=search_id)
+            logger.info("pipeline_completed_with_intelligence", search_id=search_id)
             
         except Exception as e:
             logger.exception("pipeline_error", search_id=search_id, error=str(e))
