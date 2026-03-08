@@ -25,6 +25,21 @@ export default function HomePage() {
       });
       
       const searchId = resp.data.id;
+      
+      // Save to guest history in localStorage
+      const guestHistory = JSON.parse(localStorage.getItem('guest_history') || '[]');
+      const newEntry = {
+        id: searchId,
+        query: query,
+        status: 'fetching',
+        paper_count: 0,
+        created_at: new Date().toISOString()
+      };
+      
+      // Keep only last 20 searches, avoid duplicates
+      const filteredHistory = guestHistory.filter(h => h.query !== query);
+      localStorage.setItem('guest_history', JSON.stringify([newEntry, ...filteredHistory].slice(0, 20)));
+      
       navigate(`/results/${searchId}`);
     } catch (err) {
       console.error(err);

@@ -6,7 +6,6 @@ import httpx
 import argparse
 from pathlib import Path
 
-# Add backend to path to reuse services if needed, but here we just need a simple fetcher
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend")))
 
 async def download_papers(query: str, limit: int = 100):

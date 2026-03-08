@@ -35,30 +35,41 @@ def get_freshness_metrics(papers: list[dict]):
 async def fetch_papers(query: str, num_papers: int = 50):
     """
     Orchestrator for paper fetching.
-    1. Checks for local mock data (e.g. medical_nlp.json).
-    2. Fallbacks to paper_fetcher.py for live API calls.
+    1. Tries live API fetching from Semantic Scholar (with retries).
+    2. Caches successful results to mock_data for future instant loads.
+    3. Falls back to existing mock_data only if API is completely unavailable.
     """
-    # 1. Check for local mock data first
+    mock_filename = query.lower().replace(" ", "_").replace("/", "_") + ".json"
+    mock_path = Path(__file__).parent.parent / "mock_data" / mock_filename
+
+    # 1. Try Deep API Fetching First
     try:
-        # Sanitize query for filename mapping
-        mock_filename = query.lower().replace(" ", "_").replace("/", "_") + ".json"
+        logger.info("attempting_live_api_fetch", query=query)
+        papers = await fetch_from_semantic_scholar(query, limit=num_papers + 10)
         
-        # Path to mock data directory
-        mock_path = Path(__file__).parent.parent / "mock_data" / mock_filename
-        
+        if papers:
+            # 2. Auto-cache successful results for future use
+            try:
+                mock_path.parent.mkdir(parents=True, exist_ok=True)
+                with open(mock_path, "w", encoding="utf-8") as f:
+                    json.dump(papers, f, indent=2)
+                logger.info("cached_api_results", path=str(mock_path))
+            except Exception as cache_err:
+                logger.warning("caching_failed", error=str(cache_err))
+                
+            return papers[:num_papers]
+            
+    except Exception as e:
+        logger.warning("live_api_fetch_failed_after_retries", error=str(e))
+
+    # 3. Last Resort Fallback: Check for existing local mock data
+    try:
         if mock_path.exists():
-            logger.info("loading_local_mock_data", query=query, path=str(mock_path))
+            logger.info("falling_back_to_cached_mock_data", query=query, path=str(mock_path))
             with open(mock_path, "r", encoding="utf-8") as f:
                 papers = json.load(f)
                 return papers[:num_papers]
-    except Exception as e:
-        logger.warning("mock_data_load_failed", error=str(e))
+    except Exception as fallback_err:
+        logger.error("mock_fallback_failed", error=str(fallback_err))
 
-    # 2. Fallback to Deep API Fetching
-    try:
-        logger.info("falling_back_to_api_fetcher", query=query)
-        papers = await fetch_from_semantic_scholar(query, limit=num_papers + 10)
-        return papers[:num_papers]
-    except Exception as e:
-        logger.exception("papers_fetch_failed", error=str(e))
-        return []
+    return []

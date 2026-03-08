@@ -33,6 +33,7 @@ class Search(Base):
     config_sim_threshold = Column(Float, default=0.55)
     # Result storage
     results = Column(JSON, nullable=True)
+    error_message = Column(Text, nullable=True)
     
     owner = relationship("User", back_populates="searches")
 

@@ -2,6 +2,10 @@ import structlog
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from datetime import datetime
+from pydantic import BaseModel
+from typing import List, Optional
+import os
+from google import genai
 
 logger = structlog.get_logger()
 

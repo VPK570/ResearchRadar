@@ -100,6 +100,7 @@ async def run_search_pipeline(search_id: int):
             search = await db.get(Search, search_id)
             if search:
                 search.status = "failed"
+                search.error_message = str(e)
                 search.completed_at = datetime.utcnow()
                 await db.commit()
 

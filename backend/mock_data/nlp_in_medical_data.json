@@ -1,43 +1,997 @@
 [
   {
-    "paperId": "mock-p1",
-    "title": "BERT-based Named Entity Recognition for Clinical Electronic Health Records",
-    "abstract": "Electronic Health Records (EHRs) contain vast amounts of unstructured clinical information. We apply BERT (Bidirectional Encoder Representations from Transformers) to the task of Named Entity Recognition (NER) to identify medications, dosages, and patient symptoms. Our results show that domain-specific pre-training on clinical corpora significantly outperforms generic language models.",
+    "paperId": "http://arxiv.org/abs/2005.07866v1",
+    "title": "Byzantine-Resilient SGD in High Dimensions on Heterogeneous Data",
+    "abstract": "We study distributed stochastic gradient descent (SGD) in the master-worker architecture under Byzantine attacks. We consider the heterogeneous data model, where different workers may have different local datasets, and we do not make any probabilistic assumptions on data generation. At the core of our algorithm, we use the polynomial-time outlier-filtering procedure for robust mean estimation proposed by Steinhardt et al. (ITCS 2018) to filter-out corrupt gradients. In order to be able to apply their filtering procedure in our {\\em heterogeneous} data setting where workers compute {\\em stochastic} gradients, we derive a new matrix concentration result, which may be of independent interest.\n  We provide convergence analyses for smooth strongly-convex and non-convex objectives. We derive our results under the bounded variance assumption on local stochastic gradients and a {\\em deterministic} condition on datasets, namely, gradient dissimilarity; and for both these quantities, we provide concrete bounds in the statistical heterogeneous data model. We give a trade-off between the mini-batch size for stochastic gradients and the approximation error. Our algorithm can tolerate up to $\\frac{1}{4}$ fraction Byzantine workers. It can find approximate optimal parameters in the strongly-convex setting exponentially fast and reach to an approximate stationary point in the non-convex setting with a linear speed, thus, matching the convergence rates of vanilla SGD in the Byzantine-free setting.\n  We also propose and analyze a Byzantine-resilient SGD algorithm with gradient compression, where workers send $k$ random coordinates of their gradients. Under mild conditions, we show a $\\frac{d}{k}$-factor saving in communication bits as well as decoding complexity over our compression-free algorithm without affecting its convergence rate (order-wise) and the approximation error.",
+    "year": 2020,
+    "authors": [
+      "Deepesh Data",
+      "Suhas Diggavi"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1907.02664v2",
+    "title": "Data Encoding for Byzantine-Resilient Distributed Optimization",
+    "abstract": "We study distributed optimization in the presence of Byzantine adversaries, where both data and computation are distributed among $m$ worker machines, $t$ of which may be corrupt. The compromised nodes may collaboratively and arbitrarily deviate from their pre-specified programs, and a designated (master) node iteratively computes the model/parameter vector for generalized linear models. In this work, we primarily focus on two iterative algorithms: Proximal Gradient Descent (PGD) and Coordinate Descent (CD). Gradient descent (GD) is a special case of these algorithms. PGD is typically used in the data-parallel setting, where data is partitioned across different samples, whereas, CD is used in the model-parallelism setting, where data is partitioned across the parameter space.\n  In this paper, we propose a method based on data encoding and error correction over real numbers to combat adversarial attacks. We can tolerate up to $t\\leq \\lfloor\\frac{m-1}{2}\\rfloor$ corrupt worker nodes, which is information-theoretically optimal. We give deterministic guarantees, and our method does not assume any probability distribution on the data. We develop a {\\em sparse} encoding scheme which enables computationally efficient data encoding and decoding. We demonstrate a trade-off between the corruption threshold and the resource requirements (storage, computational, and communication complexity). As an example, for $t\\leq\\frac{m}{3}$, our scheme incurs only a {\\em constant} overhead on these resources, over that required by the plain distributed PGD/CD algorithms which provide no adversarial protection. To the best of our knowledge, ours is the first paper that makes CD secure against adversarial attacks.\n  Our encoding scheme extends efficiently to the data streaming model and for stochastic gradient descent (SGD). We also give experimental results to show the efficacy of our proposed schemes.",
+    "year": 2019,
+    "authors": [
+      "Deepesh Data",
+      "Linqi Song",
+      "Suhas Diggavi"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1110.5626v1",
+    "title": "Constraints on dark energy from H II starburst galaxy apparent magnitude versus redshift data",
+    "abstract": "In this paper we use H II starburst galaxy apparent magnitude versus redshift data from Siegel et al. (2005) to constrain dark energy cosmological model parameters. These constraints are generally consistent with those derived using other data sets, but are not as restrictive as the tightest currently available constraints.",
+    "year": 2011,
+    "authors": [
+      "Data Mania",
+      "Bharat Ratra"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2510.21391v1",
+    "title": "TerraGen: A Unified Multi-Task Layout Generation Framework for Remote Sensing Data Augmentation",
+    "abstract": "Remote sensing vision tasks require extensive labeled data across multiple, interconnected domains. However, current generative data augmentation frameworks are task-isolated, i.e., each vision task requires training an independent generative model, and ignores the modeling of geographical information and spatial constraints. To address these issues, we propose \\textbf{TerraGen}, a unified layout-to-image generation framework that enables flexible, spatially controllable synthesis of remote sensing imagery for various high-level vision tasks, e.g., detection, segmentation, and extraction. Specifically, TerraGen introduces a geographic-spatial layout encoder that unifies bounding box and segmentation mask inputs, combined with a multi-scale injection scheme and mask-weighted loss to explicitly encode spatial constraints, from global structures to fine details. Also, we construct the first large-scale multi-task remote sensing layout generation dataset containing 45k images and establish a standardized evaluation protocol for this task. Experimental results show that our TerraGen can achieve the best generation image quality across diverse tasks. Additionally, TerraGen can be used as a universal data-augmentation generator, enhancing downstream task performance significantly and demonstrating robust cross-task generalisation in both full-data and few-shot scenarios.",
+    "year": 2025,
+    "authors": [
+      "Datao Tang",
+      "Hao Wang",
+      "Yudeng Xin",
+      "Hui Qiao",
+      "Dongsheng Jiang",
+      "Yin Li",
+      "Zhiheng Yu",
+      "Xiangyong Cao"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2411.15497v3",
+    "title": "AeroGen: Enhancing Remote Sensing Object Detection with Diffusion-Driven Data Generation",
+    "abstract": "Remote sensing image object detection (RSIOD) aims to identify and locate specific objects within satellite or aerial imagery. However, there is a scarcity of labeled data in current RSIOD datasets, which significantly limits the performance of current detection algorithms. Although existing techniques, e.g., data augmentation and semi-supervised learning, can mitigate this scarcity issue to some extent, they are heavily dependent on high-quality labeled data and perform worse in rare object classes. To address this issue, this paper proposes a layout-controllable diffusion generative model (i.e. AeroGen) tailored for RSIOD. To our knowledge, AeroGen is the first model to simultaneously support horizontal and rotated bounding box condition generation, thus enabling the generation of high-quality synthetic images that meet specific layout and object category requirements. Additionally, we propose an end-to-end data augmentation framework that integrates a diversity-conditioned generator and a filtering mechanism to enhance both the diversity and quality of generated data. Experimental results demonstrate that the synthetic data produced by our method are of high quality and diversity. Furthermore, the synthetic RSIOD data can significantly improve the detection performance of existing RSIOD models, i.e., the mAP metrics on DIOR, DIOR-R, and HRSC datasets are improved by 3.7%, 4.3%, and 2.43%, respectively. The code is available at https://github.com/Sonettoo/AeroGen.",
+    "year": 2024,
+    "authors": [
+      "Datao Tang",
+      "Xiangyong Cao",
+      "Xuan Wu",
+      "Jialin Li",
+      "Jing Yao",
+      "Xueru Bai",
+      "Dongsheng Jiang",
+      "Yin Li",
+      "Deyu Meng"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2104.12405v2",
+    "title": "A dissemination workshop for introducing young Italian students to NLP",
+    "abstract": "We describe and make available the game-based material developed for a laboratory run at several Italian science festivals to popularize NLP among young students.",
     "year": 2021,
+    "authors": [
+      "Lucio Messina",
+      "Lucia Busso",
+      "Claudia Roberta Combei",
+      "Ludovica Pannitto",
+      "Alessio Miaschi",
+      "Gabriele Sarti",
+      "Malvina Nissim"
+    ],
+    "citationCount": 0,
+    "doi": null,
     "references": []
   },
   {
-    "paperId": "mock-p2",
-    "title": "Ethical Implications of Large Language Models in Patient Communication",
-    "abstract": "As LLMs are integrated into patient-facing interfaces, concerns regarding bias, hallucinations, and privacy become paramount. This study surveys the current landscape of ethical guidelines for healthcare NLP and identifies a lack of consensus on the responsible disclosure of AI-generated advice in clinical settings.",
-    "year": 2022,
+    "paperId": "http://arxiv.org/abs/2010.16064v1",
+    "title": "A 20 Gbps Data Transmitting ASIC with PAM4 for Particle Physics Experiments",
+    "abstract": "We present the design principle and test results of a data transmitting ASIC, GBS20, for particle physics experiments. The goal of GBS20 will be an ASIC that employs two serializers each from the 10.24 Gbps lpGBT SerDes, sharing the PLL also from lpGBT. A PAM4 encoder plus a VCSEL driver will be implemented in the same die to use the same clock system, eliminating the need of CDRs in the PAM4 encoder. This way the transmitter module, GBT20, developed using the GBS20 ASIC, will have the exact lpGBT data interface and transmission protocol, with an output up to 20.48 Gbps over one fiber. With PAM4 embedded FPGAs at the receiving end, GBT20 will halve the fibers needed in a system and better use the input bandwidth of the FPGA. A prototype, GBS20v0 is fabricated using a commercial 65 nm CMOS technology. This prototype has two serializers and a PAM4 encoder sharing the lpGBT PLL, but no user data input. An internal PRBS generator provides data to the serializers. GBS20v0 is tested barely up to 20.48 Gbps. With lessons learned from this prototype, we are designing the second prototype, GBS20v1, that will have 16 user data input channels each at 1.28 Gbps. We present the design concept of the GBS20 ASIC and the GBT20 module, the preliminary test results, and lessons learned from GBS20v0 and the design of GBS20v1 which will be not only a test chip but also a user chip with 16 input data channels.",
+    "year": 2020,
+    "authors": [
+      "Li Zhang",
+      "Datao Gong",
+      "Suen Hou",
+      "Guanming Huang",
+      "Xing Huang",
+      "Chonghan Liu",
+      "Tiankuan Liu",
+      "Hanhan Sun",
+      "Quan Sun",
+      "Xiangming Sun",
+      "Wei Zhang",
+      "Jingbo Ye"
+    ],
+    "citationCount": 0,
+    "doi": null,
     "references": []
   },
   {
-    "paperId": "mock-p3",
-    "title": "Clinical-T5: A Text-to-Text Transfer Transformer for Medical Synthesis",
-    "abstract": "We introduce Clinical-T5, a model designed to summarize complex clinical notes into patient-friendly summaries. By using a text-to-text framework, we demonstrate superior performance in preserving clinical accuracy while increasing readability scores for non-professional readers.",
-    "year": 2023,
-    "references": [
-        {"paperId": "mock-p1"}
-    ]
+    "paperId": "http://arxiv.org/abs/2104.12422v2",
+    "title": "Teaching NLP with Bracelets and Restaurant Menus: An Interactive Workshop for Italian Students",
+    "abstract": "Although Natural Language Processing (NLP) is at the core of many tools young people use in their everyday life, high school curricula (in Italy) do not include any computational linguistics education. This lack of exposure makes the use of such tools less responsible than it could be and makes choosing computational linguistics as a university degree unlikely. To raise awareness, curiosity, and longer-term interest in young people, we have developed an interactive workshop designed to illustrate the basic principles of NLP and computational linguistics to high school Italian students aged between 13 and 18 years. The workshop takes the form of a game in which participants play the role of machines needing to solve some of the most common problems a computer faces in understanding language: from voice recognition to Markov chains to syntactic parsing. Participants are guided through the workshop with the help of instructors, who present the activities and explain core concepts from computational linguistics. The workshop was presented at numerous outlets in Italy between 2019 and 2021, both face-to-face and online.",
+    "year": 2021,
+    "authors": [
+      "Ludovica Pannitto",
+      "Lucia Busso",
+      "Claudia Roberta Combei",
+      "Lucio Messina",
+      "Alessio Miaschi",
+      "Gabriele Sarti",
+      "Malvina Nissim"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
   },
   {
-    "paperId": "mock-p4",
-    "title": "Knowledge Graph Construction from Unstructured EHR Data",
-    "abstract": "Structuring clinical data is essential for cross-institutional research. We propose a pipeline for building knowledge graphs using relationship extraction from biomedical literature and clinical notes. This allows for automated inference of disease-symptom relationships that are often missed in traditional database schemas.",
+    "paperId": "http://arxiv.org/abs/1808.05205v1",
+    "title": "Building medical image classifiers with very limited data using segmentation networks",
+    "abstract": "Deep learning has shown promising results in medical image analysis, however, the lack of very large annotated datasets confines its full potential. Although transfer learning with ImageNet pre-trained classification models can alleviate the problem, constrained image sizes and model complexities can lead to unnecessary increase in computational cost and decrease in performance. As many common morphological features are usually shared by different classification tasks of an organ, it is greatly beneficial if we can extract such features to improve classification with limited samples. Therefore, inspired by the idea of curriculum learning, we propose a strategy for building medical image classifiers using features from segmentation networks. By using a segmentation network pre-trained on similar data as the classification task, the machine can first learn the simpler shape and structural concepts before tackling the actual classification problem which usually involves more complicated concepts. Using our proposed framework on a 3D three-class brain tumor type classification problem, we achieved 82% accuracy on 191 testing samples with 91 training samples. When applying to a 2D nine-class cardiac semantic level classification problem, we achieved 86% accuracy on 263 testing samples with 108 training samples. Comparisons with ImageNet pre-trained classifiers and classifiers trained from scratch are presented.",
+    "year": 2018,
+    "authors": [
+      "Ken C. L. Wong",
+      "Tanveer Syeda-Mahmood",
+      "Mehdi Moradi"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2304.10517v3",
+    "title": "Segment Anything Model for Medical Image Analysis: an Experimental Study",
+    "abstract": "Training segmentation models for medical images continues to be challenging due to the limited availability of data annotations. Segment Anything Model (SAM) is a foundation model that is intended to segment user-defined objects of interest in an interactive manner. While the performance on natural images is impressive, medical image domains pose their own set of challenges. Here, we perform an extensive evaluation of SAM's ability to segment medical images on a collection of 19 medical imaging datasets from various modalities and anatomies. We report the following findings: (1) SAM's performance based on single prompts highly varies depending on the dataset and the task, from IoU=0.1135 for spine MRI to IoU=0.8650 for hip X-ray. (2) Segmentation performance appears to be better for well-circumscribed objects with prompts with less ambiguity and poorer in various other scenarios such as the segmentation of brain tumors. (3) SAM performs notably better with box prompts than with point prompts. (4) SAM outperforms similar methods RITM, SimpleClick, and FocalClick in almost all single-point prompt settings. (5) When multiple-point prompts are provided iteratively, SAM's performance generally improves only slightly while other methods' performance improves to the level that surpasses SAM's point-based performance. We also provide several illustrations for SAM's performance on all tested datasets, iterative segmentation, and SAM's behavior given prompt ambiguity. We conclude that SAM shows impressive zero-shot segmentation performance for certain medical imaging datasets, but moderate to poor performance for others. SAM has the potential to make a significant impact in automated medical image segmentation in medical imaging, but appropriate care needs to be applied when using it.",
+    "year": 2023,
+    "authors": [
+      "Maciej A. Mazurowski",
+      "Haoyu Dong",
+      "Hanxue Gu",
+      "Jichen Yang",
+      "Nicholas Konz",
+      "Yixin Zhang"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2311.02115v2",
+    "title": "Towards objective and systematic evaluation of bias in artificial intelligence for medical imaging",
+    "abstract": "Artificial intelligence (AI) models trained using medical images for clinical tasks often exhibit bias in the form of disparities in performance between subgroups. Since not all sources of biases in real-world medical imaging data are easily identifiable, it is challenging to comprehensively assess how those biases are encoded in models, and how capable bias mitigation methods are at ameliorating performance disparities. In this article, we introduce a novel analysis framework for systematically and objectively investigating the impact of biases in medical images on AI models. We developed and tested this framework for conducting controlled in silico trials to assess bias in medical imaging AI using a tool for generating synthetic magnetic resonance images with known disease effects and sources of bias. The feasibility is showcased by using three counterfactual bias scenarios to measure the impact of simulated bias effects on a convolutional neural network (CNN) classifier and the efficacy of three bias mitigation strategies. The analysis revealed that the simulated biases resulted in expected subgroup performance disparities when the CNN was trained on the synthetic datasets. Moreover, reweighing was identified as the most successful bias mitigation strategy for this setup, and we demonstrated how explainable AI methods can aid in investigating the manifestation of bias in the model using this framework. Developing fair AI models is a considerable challenge given that many and often unknown sources of biases can be present in medical imaging datasets. In this work, we present a novel methodology to objectively study the impact of biases and mitigation strategies on deep learning pipelines, which can support the development of clinical AI that is robust and responsible.",
+    "year": 2023,
+    "authors": [
+      "Emma A. M. Stanley",
+      "Raissa Souza",
+      "Anthony Winder",
+      "Vedant Gulve",
+      "Kimberly Amador",
+      "Matthias Wilms",
+      "Nils D. Forkert"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2507.11773v1",
+    "title": "Small Data Explainer -- The impact of small data methods in everyday life",
+    "abstract": "The emergence of breakthrough artificial intelligence (AI) techniques has led to a renewed focus on how small data settings, i.e., settings with limited information, can benefit from such developments. This includes societal issues such as how best to include under-represented groups in data-driven policy and decision making, or the health benefits of assistive technologies such as wearables. We provide a conceptual overview, in particular contrasting small data with big data, and identify common themes from exemplary case studies and application areas. Potential solutions are described in a more detailed technical overview of current data analysis and modelling techniques, highlighting contributions from different disciplines, such as knowledge-driven modelling from statistics and data-driven modelling from computer science. By linking application settings, conceptual contributions and specific techniques, we highlight what is already feasible and suggest what an agenda for fully leveraging small data might look like.",
+    "year": 2025,
+    "authors": [
+      "Maren Hackenberg",
+      "Sophia G. Connor",
+      "Fabian Kabus",
+      "June Brawner",
+      "Ella Markham",
+      "Mahi Hardalupas",
+      "Areeq Chowdhury",
+      "Rolf Backofen",
+      "Anna K\u00f6ttgen",
+      "Angelika Rohde",
+      "Nadine Binder",
+      "Harald Binder",
+      "the Collaborative Research Center 1597 Small Data"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2310.15371v1",
+    "title": "Vicinal Feature Statistics Augmentation for Federated 3D Medical Volume Segmentation",
+    "abstract": "Federated learning (FL) enables multiple client medical institutes collaboratively train a deep learning (DL) model with privacy protection. However, the performance of FL can be constrained by the limited availability of labeled data in small institutes and the heterogeneous (i.e., non-i.i.d.) data distribution across institutes. Though data augmentation has been a proven technique to boost the generalization capabilities of conventional centralized DL as a \"free lunch\", its application in FL is largely underexplored. Notably, constrained by costly labeling, 3D medical segmentation generally relies on data augmentation. In this work, we aim to develop a vicinal feature-level data augmentation (VFDA) scheme to efficiently alleviate the local feature shift and facilitate collaborative training for privacy-aware FL segmentation. We take both the inner- and inter-institute divergence into consideration, without the need for cross-institute transfer of raw data or their mixup. Specifically, we exploit the batch-wise feature statistics (e.g., mean and standard deviation) in each institute to abstractly represent the discrepancy of data, and model each feature statistic probabilistically via a Gaussian prototype, with the mean corresponding to the original statistic and the variance quantifying the augmentation scope. From the vicinal risk minimization perspective, novel feature statistics can be drawn from the Gaussian distribution to fulfill augmentation. The variance is explicitly derived by the data bias in each individual institute and the underlying feature statistics characterized by all participating institutes. The added-on VFDA consistently yielded marked improvements over six advanced FL methods on both 3D brain tumor and cardiac segmentation.",
+    "year": 2023,
+    "authors": [
+      "Yongsong Huang",
+      "Wanqing Xie",
+      "Mingzhen Li",
+      "Mingmei Cheng",
+      "Jinzhou Wu",
+      "Weixiao Wang",
+      "Jane You",
+      "Xiaofeng Liu"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2306.01022v2",
+    "title": "Introduction of Medical Imaging Modalities",
+    "abstract": "The diagnosis and treatment of various diseases had been expedited with the help of medical imaging. Different medical imaging modalities, including X-ray, Computed Tomography (CT), Magnetic Resonance Imaging (MRI), Nuclear Imaging, Ultrasound, Electrical Impedance Tomography (EIT), and Emerging Technologies for in vivo imaging modalities is presented in this chapter, in addition to these modalities, some advanced techniques such as contrast-enhanced MRI, MR approaches for osteoarthritis, Cardiovascular Imaging, and Medical Imaging data mining and search. Despite its important role and potential effectiveness as a diagnostic tool, reading and interpreting medical images by radiologists is often tedious and difficult due to the large heterogeneity of diseases and the limitation of image quality or resolution. Besides the introduction and discussion of the basic principles, typical clinical applications, advantages, and limitations of each modality used in current clinical practice, this chapter also highlights the importance of emerging technologies in medical imaging and the role of data mining and search aiming to support translational clinical research, improve patient care, and increase the efficiency of the healthcare system.",
+    "year": 2023,
+    "authors": [
+      "S. K. M Shadekul Islam",
+      "MD Abdullah Al Nasim",
+      "Ismail Hossain",
+      "Md Azim Ullah",
+      "Kishor Datta Gupta",
+      "Md Monjur Hossain Bhuiyan"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2212.08228v2",
+    "title": "SADM: Sequence-Aware Diffusion Model for Longitudinal Medical Image Generation",
+    "abstract": "Human organs constantly undergo anatomical changes due to a complex mix of short-term (e.g., heartbeat) and long-term (e.g., aging) factors. Evidently, prior knowledge of these factors will be beneficial when modeling their future state, i.e., via image generation. However, most of the medical image generation tasks only rely on the input from a single image, thus ignoring the sequential dependency even when longitudinal data is available. Sequence-aware deep generative models, where model input is a sequence of ordered and timestamped images, are still underexplored in the medical imaging domain that is featured by several unique challenges: 1) Sequences with various lengths; 2) Missing data or frame, and 3) High dimensionality. To this end, we propose a sequence-aware diffusion model (SADM) for the generation of longitudinal medical images. Recently, diffusion models have shown promising results in high-fidelity image generation. Our method extends this new technique by introducing a sequence-aware transformer as the conditional module in a diffusion model. The novel design enables learning longitudinal dependency even with missing data during training and allows autoregressive generation of a sequence of images during inference. Our extensive experiments on 3D longitudinal medical images demonstrate the effectiveness of SADM compared with baselines and alternative methods. The code is available at https://github.com/ubc-tea/SADM-Longitudinal-Medical-Image-Generation.",
     "year": 2022,
-    "references": [
-        {"paperId": "mock-p1"}
-    ]
+    "authors": [
+      "Jee Seok Yoon",
+      "Chenghao Zhang",
+      "Heung-Il Suk",
+      "Jia Guo",
+      "Xiaoxiao Li"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
   },
   {
-    "paperId": "mock-p5",
-    "title": "Federated Learning for Privacy-Preserving Clinical NLP",
-    "abstract": "Sharing medical data is restricted by HIPPA regulations. Federated learning allows models to be trained across multiple hospitals without moving sensitive patient data. Our approach uses differential privacy to further secure the gradients of Clinical-BERT models during the aggregation process.",
+    "paperId": "http://arxiv.org/abs/1803.08691v1",
+    "title": "Deep learning and its application to medical image segmentation",
+    "abstract": "One of the most common tasks in medical imaging is semantic segmentation. Achieving this segmentation automatically has been an active area of research, but the task has been proven very challenging due to the large variation of anatomy across different patients. However, recent advances in deep learning have made it possible to significantly improve the performance of image recognition and semantic segmentation methods in the field of computer vision. Due to the data driven approaches of hierarchical feature learning in deep learning frameworks, these advances can be translated to medical images without much difficulty. Several variations of deep convolutional neural networks have been successfully applied to medical images. Especially fully convolutional architectures have been proven efficient for segmentation of 3D medical images. In this article, we describe how to build a 3D fully convolutional network (FCN) that can process 3D images in order to produce automatic semantic segmentations. The model is trained and evaluated on a clinical computed tomography (CT) dataset and shows state-of-the-art performance in multi-organ segmentation.",
+    "year": 2018,
+    "authors": [
+      "Holger R. Roth",
+      "Chen Shen",
+      "Hirohisa Oda",
+      "Masahiro Oda",
+      "Yuichiro Hayashi",
+      "Kazunari Misawa",
+      "Kensaku Mori"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2407.03548v1",
+    "title": "HiDiff: Hybrid Diffusion Framework for Medical Image Segmentation",
+    "abstract": "Medical image segmentation has been significantly advanced with the rapid development of deep learning (DL) techniques. Existing DL-based segmentation models are typically discriminative; i.e., they aim to learn a mapping from the input image to segmentation masks. However, these discriminative methods neglect the underlying data distribution and intrinsic class characteristics, suffering from unstable feature space. In this work, we propose to complement discriminative segmentation methods with the knowledge of underlying data distribution from generative models. To that end, we propose a novel hybrid diffusion framework for medical image segmentation, termed HiDiff, which can synergize the strengths of existing discriminative segmentation models and new generative diffusion models. HiDiff comprises two key components: discriminative segmentor and diffusion refiner. First, we utilize any conventional trained segmentation models as discriminative segmentor, which can provide a segmentation mask prior for diffusion refiner. Second, we propose a novel binary Bernoulli diffusion model (BBDM) as the diffusion refiner, which can effectively, efficiently, and interactively refine the segmentation mask by modeling the underlying data distribution. Third, we train the segmentor and BBDM in an alternate-collaborative manner to mutually boost each other. Extensive experimental results on abdomen organ, brain tumor, polyps, and retinal vessels segmentation datasets, covering four widely-used modalities, demonstrate the superior performance of HiDiff over existing medical segmentation algorithms, including the state-of-the-art transformer- and diffusion-based ones. In addition, HiDiff excels at segmenting small objects and generalizing to new datasets. Source codes are made available at https://github.com/takimailto/HiDiff.",
+    "year": 2024,
+    "authors": [
+      "Tao Chen",
+      "Chenhui Wang",
+      "Zhihao Chen",
+      "Yiming Lei",
+      "Hongming Shan"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2412.01496v2",
+    "title": "Fr\u00e9chet Radiomic Distance (FRD): A Versatile Metric for Comparing Medical Imaging Datasets",
+    "abstract": "Determining whether two sets of images belong to the same or different distributions or domains is a crucial task in modern medical image analysis and deep learning; for example, to evaluate the output quality of image generative models. Currently, metrics used for this task either rely on the (potentially biased) choice of some downstream task, such as segmentation, or adopt task-independent perceptual metrics (e.g., Fr\u00e9chet Inception Distance/FID) from natural imaging, which we show insufficiently capture anatomical features. To this end, we introduce a new perceptual metric tailored for medical images, FRD (Fr\u00e9chet Radiomic Distance), which utilizes standardized, clinically meaningful, and interpretable image features. We show that FRD is superior to other image distribution metrics for a range of medical imaging applications, including out-of-domain (OOD) detection, the evaluation of image-to-image translation (by correlating more with downstream task performance as well as anatomical consistency and realism), and the evaluation of unconditional image generation. Moreover, FRD offers additional benefits such as stability and computational efficiency at low sample sizes, sensitivity to image corruptions and adversarial attacks, feature interpretability, and correlation with radiologist-perceived image quality. Additionally, we address key gaps in the literature by presenting an extensive framework for the multifaceted evaluation of image similarity metrics in medical imaging -- including the first large-scale comparative study of generative models for medical image translation -- and release an accessible codebase to facilitate future research. Our results are supported by thorough experiments spanning a variety of datasets, modalities, and downstream tasks, highlighting the broad potential of FRD for medical image analysis.",
+    "year": 2024,
+    "authors": [
+      "Nicholas Konz",
+      "Richard Osuala",
+      "Preeti Verma",
+      "Yuwen Chen",
+      "Hanxue Gu",
+      "Haoyu Dong",
+      "Yaqian Chen",
+      "Andrew Marshall",
+      "Lidia Garrucho",
+      "Kaisar Kushibar",
+      "Daniel M. Lang",
+      "Gene S. Kim",
+      "Lars J. Grimm",
+      "John M. Lewin",
+      "James S. Duncan",
+      "Julia A. Schnabel",
+      "Oliver Diaz",
+      "Karim Lekadir",
+      "Maciej A. Mazurowski"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2111.10480v6",
+    "title": "TransMorph: Transformer for unsupervised medical image registration",
+    "abstract": "In the last decade, convolutional neural networks (ConvNets) have been a major focus of research in medical image analysis. However, the performances of ConvNets may be limited by a lack of explicit consideration of the long-range spatial relationships in an image. Recently Vision Transformer architectures have been proposed to address the shortcomings of ConvNets and have produced state-of-the-art performances in many medical imaging applications. Transformers may be a strong candidate for image registration because their substantially larger receptive field enables a more precise comprehension of the spatial correspondence between moving and fixed images. Here, we present TransMorph, a hybrid Transformer-ConvNet model for volumetric medical image registration. This paper also presents diffeomorphic and Bayesian variants of TransMorph: the diffeomorphic variants ensure the topology-preserving deformations, and the Bayesian variant produces a well-calibrated registration uncertainty estimate. We extensively validated the proposed models using 3D medical images from three applications: inter-patient and atlas-to-patient brain MRI registration and phantom-to-CT registration. The proposed models are evaluated in comparison to a variety of existing registration methods and Transformer architectures. Qualitative and quantitative results demonstrate that the proposed Transformer-based model leads to a substantial performance improvement over the baseline methods, confirming the effectiveness of Transformers for medical image registration.",
+    "year": 2021,
+    "authors": [
+      "Junyu Chen",
+      "Eric C. Frey",
+      "Yufan He",
+      "William P. Segars",
+      "Ye Li",
+      "Yong Du"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2006.16806v1",
+    "title": "Uncertainty-aware multi-view co-training for semi-supervised medical image segmentation and domain adaptation",
+    "abstract": "Although having achieved great success in medical image segmentation, deep learning-based approaches usually require large amounts of well-annotated data, which can be extremely expensive in the field of medical image analysis. Unlabeled data, on the other hand, is much easier to acquire. Semi-supervised learning and unsupervised domain adaptation both take the advantage of unlabeled data, and they are closely related to each other. In this paper, we propose uncertainty-aware multi-view co-training (UMCT), a unified framework that addresses these two tasks for volumetric medical image segmentation. Our framework is capable of efficiently utilizing unlabeled data for better performance. We firstly rotate and permute the 3D volumes into multiple views and train a 3D deep network on each view. We then apply co-training by enforcing multi-view consistency on unlabeled data, where an uncertainty estimation of each view is utilized to achieve accurate labeling. Experiments on the NIH pancreas segmentation dataset and a multi-organ segmentation dataset show state-of-the-art performance of the proposed framework on semi-supervised medical image segmentation. Under unsupervised domain adaptation settings, we validate the effectiveness of this work by adapting our multi-organ segmentation model to two pathological organs from the Medical Segmentation Decathlon Datasets. Additionally, we show that our UMCT-DA model can even effectively handle the challenging situation where labeled source data is inaccessible, demonstrating strong potentials for real-world applications.",
+    "year": 2020,
+    "authors": [
+      "Yingda Xia",
+      "Dong Yang",
+      "Zhiding Yu",
+      "Fengze Liu",
+      "Jinzheng Cai",
+      "Lequan Yu",
+      "Zhuotun Zhu",
+      "Daguang Xu",
+      "Alan Yuille",
+      "Holger Roth"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2303.10501v1",
+    "title": "Longitudinal assessment of demographic representativeness in the Medical Imaging and Data Resource Center Open Data Commons",
+    "abstract": "Purpose: The Medical Imaging and Data Resource Center (MIDRC) open data commons was launched to accelerate the development of artificial intelligence (AI) algorithms to help address the COVID-19 pandemic. The purpose of this study was to quantify longitudinal representativeness of the demographic characteristics of the primary imaging dataset compared to the United States general population (US Census) and COVID-19 positive case counts from the Centers for Disease Control and Prevention (CDC). Approach: The Jensen Shannon distance (JSD) was used to longitudinally measure the similarity of the distribution of (1) all unique patients in the MIDRC data to the 2020 US Census and (2) all unique COVID-19 positive patients in the MIDRC data to the case counts reported by the CDC. The distributions were evaluated in the demographic categories of age at index, sex, race, ethnicity, and the intersection of race and ethnicity. Results: Representativeness the MIDRC data by ethnicity and the intersection of race and ethnicity was impacted by the percentage of CDC case counts for which data in these categories is not reported. The distributions by sex and race have retained their level of representativeness over time. Conclusion: The representativeness of the open medical imaging datasets in the curated public data commons at MIDRC has evolved over time as both the number of contributing institutions and overall number of subjects has grown. The use of metrics such as the JSD support measurement of representativeness, one step needed for fair and generalizable AI algorithm development.",
     "year": 2023,
-    "references": [
-        {"paperId": "mock-p1"}
-    ]
+    "authors": [
+      "Heather M. Whitney",
+      "Natalie Baughan",
+      "Kyle J. Myers",
+      "Karen Drukker",
+      "Judy Gichoya",
+      "Brad Bower",
+      "Weijie Chen",
+      "Nicholas Gruszauskas",
+      "Jayashree Kalpathy-Cramer",
+      "Sanmi Koyejo",
+      "Rui C. S\u00e1",
+      "Berkman Sahiner",
+      "Zi Zhang",
+      "Maryellen L. Giger"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2109.02722v2",
+    "title": "Automatic Landmarks Correspondence Detection in Medical Images with an Application to Deformable Image Registration",
+    "abstract": "Purpose: Deformable Image Registration (DIR) can benefit from additional guidance using corresponding landmarks in the images. However, the benefits thereof are largely understudied, especially due to the lack of automatic landmark detection methods for three-dimensional (3D) medical images.\n  Approach: We present a Deep Convolutional Neural Network (DCNN), called DCNN-Match, that learns to predict landmark correspondences in 3D images in a self-supervised manner. We trained DCNN-Match on pairs of Computed Tomography (CT) scans containing simulated deformations. We explored five variants of DCNN-Match that use different loss functions and assessed their effect on the spatial density of predicted landmarks and the associated matching errors. We also tested DCNN-Match variants in combination with the open-source registration software Elastix to assess the impact of predicted landmarks in providing additional guidance to DIR.\n  Results: We tested our approach on lower-abdominal CT scans from cervical cancer patients: 121 pairs containing simulated deformations and 11 pairs demonstrating clinical deformations. The results showed significant improvement in DIR performance when landmark correspondences predicted by DCNN-Match were used in the case of simulated (p = $0e^0$) as well as clinical deformations (p = 0.030). We also observed that the spatial density of the automatic landmarks with respect to the underlying deformation affect the extent of improvement in DIR. Finally, DCNN-Match was found to generalize to Magnetic Resonance Imaging (MRI) scans without requiring retraining, indicating easy applicability to other datasets.\n  Conclusions: DCNN-Match learns to predict landmark correspondences in 3D medical images in a self-supervised manner, which can improve DIR performance.",
+    "year": 2021,
+    "authors": [
+      "Monika Grewal",
+      "Jan Wiersma",
+      "Henrike Westerveld",
+      "Peter A. N. Bosman",
+      "Tanja Alderliesten"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2101.02323v1",
+    "title": "Diminishing Uncertainty within the Training Pool: Active Learning for Medical Image Segmentation",
+    "abstract": "Active learning is a unique abstraction of machine learning techniques where the model/algorithm could guide users for annotation of a set of data points that would be beneficial to the model, unlike passive machine learning. The primary advantage being that active learning frameworks select data points that can accelerate the learning process of a model and can reduce the amount of data needed to achieve full accuracy as compared to a model trained on a randomly acquired data set. Multiple frameworks for active learning combined with deep learning have been proposed, and the majority of them are dedicated to classification tasks. Herein, we explore active learning for the task of segmentation of medical imaging data sets. We investigate our proposed framework using two datasets: 1.) MRI scans of the hippocampus, 2.) CT scans of pancreas and tumors. This work presents a query-by-committee approach for active learning where a joint optimizer is used for the committee. At the same time, we propose three new strategies for active learning: 1.) increasing frequency of uncertain data to bias the training data set; 2.) Using mutual information among the input images as a regularizer for acquisition to ensure diversity in the training dataset; 3.) adaptation of Dice log-likelihood for Stein variational gradient descent (SVGD). The results indicate an improvement in terms of data reduction by achieving full accuracy while only using 22.69 % and 48.85 % of the available data for each dataset, respectively.",
+    "year": 2021,
+    "authors": [
+      "Vishwesh Nath",
+      "Dong Yang",
+      "Bennett A. Landman",
+      "Daguang Xu",
+      "Holger R. Roth"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1208.1172v1",
+    "title": "Superiorization: An optimization heuristic for medical physics",
+    "abstract": "Purpose: To describe and mathematically validate the superiorization methodology, which is a recently-developed heuristic approach to optimization, and to discuss its applicability to medical physics problem formulations that specify the desired solution (of physically given or otherwise obtained constraints) by an optimization criterion. Methods: The underlying idea is that many iterative algorithms for finding such a solution are perturbation resilient in the sense that, even if certain kinds of changes are made at the end of each iterative step, the algorithm still produces a constraints-compatible solution. This property is exploited by using permitted changes to steer the algorithm to a solution that is not only constraints-compatible, but is also desirable according to a specified optimization criterion. The approach is very general, it is applicable to many iterative procedures and optimization criteria used in medical physics. Results: The main practical contribution is a procedure for automatically producing from any given iterative algorithm its superiorized version, which will supply solutions that are superior according to a given optimization criterion. It is shown that if the original iterative algorithm satisfies certain mathematical conditions, then the output of its superiorized version is guaranteed to be as constraints-compatible as the output of the original algorithm, but it is superior to the latter according to the optimization criterion. This intuitive description is made precise in the paper and the stated claims are rigorously proved. Superiorization is illustrated on simulated computerized tomography data of a head cross-section and, in spite of its generality, superiorization is shown to be competitive to an optimization algorithm that is specifically designed to minimize total variation.",
+    "year": 2012,
+    "authors": [
+      "G. T. Herman",
+      "E. Gardu\u00f1o",
+      "R. Davidi",
+      "Y. Censor"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2406.17608v2",
+    "title": "Test-time generative augmentation for medical image segmentation",
+    "abstract": "Medical image segmentation is critical for clinical diagnosis, treatment planning, and monitoring, yet segmentation models often struggle with uncertainties stemming from occlusions, ambiguous boundaries, and variations in imaging devices. Traditional test-time augmentation (TTA) techniques typically rely on predefined geometric and photometric transformations, limiting their adaptability and effectiveness in complex medical scenarios. In this study, we introduced Test-Time Generative Augmentation (TTGA), a novel augmentation strategy specifically tailored for medical image segmentation at inference time. Different from conventional augmentation strategies that suffer from excessive randomness or limited flexibility, TTGA leverages a domain-fine-tuned generative model to produce contextually relevant and diverse augmentations tailored to the characteristics of each test image. Built upon diffusion model inversion, a masked null-text inversion method is proposed to enable region-specific augmentations during sampling. Furthermore, a dual denoising pathway is designed to balance precise identity preservation with controlled variability. We demonstrate the efficacy of our TTGA through extensive experiments across three distinct segmentation tasks spanning nine datasets. Our results consistently demonstrate that TTGA not only improves segmentation accuracy (with DSC gains ranging from 0.1% to 2.3% over the baseline) but also offers pixel-wise error estimation (with DSC gains ranging from 1.1% to 29.0% over the baseline). The source code and demonstration are available at: https://github.com/maxiao0234/TTGA.",
+    "year": 2024,
+    "authors": [
+      "Xiao Ma",
+      "Yuhui Tao",
+      "Zetian Zhang",
+      "Yuhan Zhang",
+      "Xi Wang",
+      "Sheng Zhang",
+      "Zexuan Ji",
+      "Yizhe Zhang",
+      "Qiang Chen",
+      "Guang Yang"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2412.08520v1",
+    "title": "GR-NLP-TOOLKIT: An Open-Source NLP Toolkit for Modern Greek",
+    "abstract": "We present GR-NLP-TOOLKIT, an open-source natural language processing (NLP) toolkit developed specifically for modern Greek. The toolkit provides state-of-the-art performance in five core NLP tasks, namely part-of-speech tagging, morphological tagging, dependency parsing, named entity recognition, and Greeklishto-Greek transliteration. The toolkit is based on pre-trained Transformers, it is freely available, and can be easily installed in Python (pip install gr-nlp-toolkit). It is also accessible through a demonstration platform on HuggingFace, along with a publicly available API for non-commercial use. We discuss the functionality provided for each task, the underlying methods, experiments against comparable open-source toolkits, and future possible enhancements. The toolkit is available at: https://github.com/nlpaueb/gr-nlp-toolkit",
+    "year": 2024,
+    "authors": [
+      "Lefteris Loukas",
+      "Nikolaos Smyrnioudis",
+      "Chrysa Dikonomaki",
+      "Spyros Barbakos",
+      "Anastasios Toumazatos",
+      "John Koutsikakis",
+      "Manolis Kyriakakis",
+      "Mary Georgiou",
+      "Stavros Vassos",
+      "John Pavlopoulos",
+      "Ion Androutsopoulos"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2401.00314v1",
+    "title": "GAN-GA: A Generative Model based on Genetic Algorithm for Medical Image Generation",
+    "abstract": "Medical imaging is an essential tool for diagnosing and treating diseases. However, lacking medical images can lead to inaccurate diagnoses and ineffective treatments. Generative models offer a promising solution for addressing medical image shortage problems due to their ability to generate new data from existing datasets and detect anomalies in this data. Data augmentation with position augmentation methods like scaling, cropping, flipping, padding, rotation, and translation could lead to more overfitting in domains with little data, such as medical image data. This paper proposes the GAN-GA, a generative model optimized by embedding a genetic algorithm. The proposed model enhances image fidelity and diversity while preserving distinctive features. The proposed medical image synthesis approach improves the quality and fidelity of medical images, an essential aspect of image interpretation. To evaluate synthesized images: Frechet Inception Distance (FID) is used. The proposed GAN-GA model is tested by generating Acute lymphoblastic leukemia (ALL) medical images, an image dataset, and is the first time to be used in generative models. Our results were compared to those of InfoGAN as a baseline model. The experimental results show that the proposed optimized GAN-GA enhances FID scores by about 6.8\\%, especially in earlier training epochs. The source code and dataset will be available at: https://github.com/Mustafa-AbdulRazek/InfoGAN-GA.",
+    "year": 2023,
+    "authors": [
+      "M. AbdulRazek",
+      "G. Khoriba",
+      "M. Belal"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2408.08070v2",
+    "title": "MambaMIM: Pre-training Mamba with State Space Token Interpolation and its Application to Medical Image Segmentation",
+    "abstract": "Recently, the state space model Mamba has demonstrated efficient long-sequence modeling capabilities, particularly for addressing long-sequence visual tasks in 3D medical imaging. However, existing generative self-supervised learning methods have not yet fully unleashed Mamba's potential for handling long-range dependencies because they overlook the inherent causal properties of state space sequences in masked modeling. To address this challenge, we propose a general-purpose pre-training framework called MambaMIM, a masked image modeling method based on a novel TOKen-Interpolation strategy (TOKI) for the selective structure state space sequence, which learns causal relationships of state space within the masked sequence. Further, MambaMIM introduces a bottom-up 3D hybrid masking strategy to maintain a masking consistency across different architectures and can be used on any single or hybrid Mamba architecture to enhance its multi-scale and long-range representation capability. We pre-train MambaMIM on a large-scale dataset of 6.8K CT scans and evaluate its performance across eight public medical segmentation benchmarks. Extensive downstream experiments reveal the feasibility and advancement of using Mamba for medical image pre-training. In particular, when we apply the MambaMIM to a customized architecture that hybridizes MedNeXt and Vision Mamba, we consistently obtain the state-of-the-art segmentation performance. The code is available at: https://github.com/FengheTan9/MambaMIM.",
+    "year": 2024,
+    "authors": [
+      "Fenghe Tang",
+      "Bingkun Nian",
+      "Yingtai Li",
+      "Zihang Jiang",
+      "Jie Yang",
+      "Wei Liu",
+      "S. Kevin Zhou"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2310.07027v2",
+    "title": "Utilizing Synthetic Data for Medical Vision-Language Pre-training: Bypassing the Need for Real Images",
+    "abstract": "Medical Vision-Language Pre-training (VLP) learns representations jointly from medical images and paired radiology reports. It typically requires large-scale paired image-text datasets to achieve effective pre-training for both the image encoder and text encoder. The advent of text-guided generative models raises a compelling question: Can VLP be implemented solely with synthetic images generated from genuine radiology reports, thereby mitigating the need for extensively pairing and curating image-text datasets? In this work, we scrutinize this very question by examining the feasibility and effectiveness of employing synthetic images for medical VLP. We replace real medical images with their synthetic equivalents, generated from authentic medical reports. Utilizing three state-of-the-art VLP algorithms, we exclusively train on these synthetic samples. Our empirical evaluation across three subsequent tasks, namely image classification, semantic segmentation and object detection, reveals that the performance achieved through synthetic data is on par with or even exceeds that obtained with real images. As a pioneering contribution to this domain, we introduce a large-scale synthetic medical image dataset, paired with anonymized real radiology reports. This alleviates the need of sharing medical images, which are not easy to curate and share in practice. The code and the dataset can be found in \\href{https://github.com/cheliu-computation/MedSyn-RepLearn/tree/main}{https://github.com/cheliu-computation/MedSyn-RepLearn/tree/main}.",
+    "year": 2023,
+    "authors": [
+      "Che Liu",
+      "Anand Shah",
+      "Wenjia Bai",
+      "Rossella Arcucci"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2106.02359v3",
+    "title": "How Good Is NLP? A Sober Look at NLP Tasks through the Lens of Social Impact",
+    "abstract": "Recent years have seen many breakthroughs in natural language processing (NLP), transitioning it from a mostly theoretical field to one with many real-world applications. Noting the rising number of applications of other machine learning and AI techniques with pervasive societal impact, we anticipate the rising importance of developing NLP technologies for social good. Inspired by theories in moral philosophy and global priorities research, we aim to promote a guideline for social good in the context of NLP. We lay the foundations via the moral philosophy definition of social good, propose a framework to evaluate the direct and indirect real-world impact of NLP tasks, and adopt the methodology of global priorities research to identify priority causes for NLP research. Finally, we use our theoretical framework to provide some practical guidelines for future NLP research for social good. Our data and code are available at http://github.com/zhijing-jin/nlp4sg_acl2021. In addition, we curate a list of papers and resources on NLP for social good at https://github.com/zhijing-jin/NLP4SocialGood_Papers.",
+    "year": 2021,
+    "authors": [
+      "Zhijing Jin",
+      "Geeticka Chauhan",
+      "Brian Tse",
+      "Mrinmaya Sachan",
+      "Rada Mihalcea"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1204.3055v1",
+    "title": "IVOA Recommendation: Spectrum Data Model 1.1",
+    "abstract": "We present a data model describing the structure of spectrophotometric datasets with spectral and temporal coordinates and associated metadata. This data model may be used to represent spectra, time series data, segments of SED (Spectral Energy Distributions) and other spectral or temporal associations.",
+    "year": 2012,
+    "authors": [
+      "Jonathan McDowell",
+      "Doug Tody",
+      "Tamas Budavari",
+      "Markus Dolensky",
+      "Inga Kamp",
+      "Kelly McCusker",
+      "Pavlos Protopapas",
+      "Arnold Rots",
+      "Randy Thompson",
+      "Frank Valdes",
+      "Petr Skoda",
+      "Bruno Rino",
+      "Sebastien Derriere",
+      "Jesus Salgado",
+      "Omar Laurino",
+      "the IVOA Data Access Layer",
+      "Data Model Working Groups"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2307.15872v1",
+    "title": "Cross-dimensional transfer learning in medical image segmentation with deep learning",
+    "abstract": "Over the last decade, convolutional neural networks have emerged and advanced the state-of-the-art in various image analysis and computer vision applications. The performance of 2D image classification networks is constantly improving and being trained on databases made of millions of natural images. However, progress in medical image analysis has been hindered by limited annotated data and acquisition constraints. These limitations are even more pronounced given the volumetry of medical imaging data. In this paper, we introduce an efficient way to transfer the efficiency of a 2D classification network trained on natural images to 2D, 3D uni- and multi-modal medical image segmentation applications. In this direction, we designed novel architectures based on two key principles: weight transfer by embedding a 2D pre-trained encoder into a higher dimensional U-Net, and dimensional transfer by expanding a 2D segmentation network into a higher dimension one. The proposed networks were tested on benchmarks comprising different modalities: MR, CT, and ultrasound images. Our 2D network ranked first on the CAMUS challenge dedicated to echo-cardiographic data segmentation and surpassed the state-of-the-art. Regarding 2D/3D MR and CT abdominal images from the CHAOS challenge, our approach largely outperformed the other 2D-based methods described in the challenge paper on Dice, RAVD, ASSD, and MSSD scores and ranked third on the online evaluation platform. Our 3D network applied to the BraTS 2022 competition also achieved promising results, reaching an average Dice score of 91.69% (91.22%) for the whole tumor, 83.23% (84.77%) for the tumor core, and 81.75% (83.88%) for enhanced tumor using the approach based on weight (dimensional) transfer. Experimental and qualitative results illustrate the effectiveness of our methods for multi-dimensional medical image segmentation.",
+    "year": 2023,
+    "authors": [
+      "Hicham Messaoudi",
+      "Ahror Belaid",
+      "Douraied Ben Salem",
+      "Pierre-Henri Conze"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1805.08841v3",
+    "title": "Distribution Matching Losses Can Hallucinate Features in Medical Image Translation",
+    "abstract": "This paper discusses how distribution matching losses, such as those used in CycleGAN, when used to synthesize medical images can lead to mis-diagnosis of medical conditions. It seems appealing to use these new image synthesis methods for translating images from a source to a target domain because they can produce high quality images and some even do not require paired data. However, the basis of how these image translation models work is through matching the translation output to the distribution of the target domain. This can cause an issue when the data provided in the target domain has an over or under representation of some classes (e.g. healthy or sick). When the output of an algorithm is a transformed image there are uncertainties whether all known and unknown class labels have been preserved or changed. Therefore, we recommend that these translated images should not be used for direct interpretation (e.g. by doctors) because they may lead to misdiagnosis of patients based on hallucinated image features by an algorithm that matches a distribution. However there are many recent papers that seem as though this is the goal.",
+    "year": 2018,
+    "authors": [
+      "Joseph Paul Cohen",
+      "Margaux Luck",
+      "Sina Honari"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2105.00895v1",
+    "title": "Teaching NLP outside Linguistics and Computer Science classrooms: Some challenges and some opportunities",
+    "abstract": "NLP's sphere of influence went much beyond computer science research and the development of software applications in the past decade. We see people using NLP methods in a range of academic disciplines from Asian Studies to Clinical Oncology. We also notice the presence of NLP as a module in most of the data science curricula within and outside of regular university setups. These courses are taken by students from very diverse backgrounds. This paper takes a closer look at some issues related to teaching NLP to these diverse audiences based on my classroom experiences, and identifies some challenges the instructors face, particularly when there is no ecosystem of related courses for the students. In this process, it also identifies a few challenge areas for both NLP researchers and tool developers.",
+    "year": 2021,
+    "authors": [
+      "Sowmya Vajjala"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2412.04784v2",
+    "title": "NLP-ADBench: NLP Anomaly Detection Benchmark",
+    "abstract": "Anomaly detection (AD) is an important machine learning task with applications in fraud detection, content moderation, and user behavior analysis. However, AD is relatively understudied in a natural language processing (NLP) context, limiting its effectiveness in detecting harmful content, phishing attempts, and spam reviews. We introduce NLP-ADBench, the most comprehensive NLP anomaly detection (NLP-AD) benchmark to date, which includes eight curated datasets and 19 state-of-the-art algorithms. These span 3 end-to-end methods and 16 two-step approaches that adapt classical, non-AD methods to language embeddings from BERT and OpenAI. Our empirical results show that no single model dominates across all datasets, indicating a need for automated model selection. Moreover, two-step methods with transformer-based embeddings consistently outperform specialized end-to-end approaches, with OpenAI embeddings outperforming those of BERT. We release NLP-ADBench at https://github.com/USC-FORTIS/NLP-ADBench, providing a unified framework for NLP-AD and supporting future investigations.",
+    "year": 2024,
+    "authors": [
+      "Yuangang Li",
+      "Jiaqi Li",
+      "Zhuo Xiao",
+      "Tiankai Yang",
+      "Yi Nian",
+      "Xiyang Hu",
+      "Yue Zhao"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1804.03830v1",
+    "title": "Unsupervised Segmentation of 3D Medical Images Based on Clustering and Deep Representation Learning",
+    "abstract": "This paper presents a novel unsupervised segmentation method for 3D medical images. Convolutional neural networks (CNNs) have brought significant advances in image segmentation. However, most of the recent methods rely on supervised learning, which requires large amounts of manually annotated data. Thus, it is challenging for these methods to cope with the growing amount of medical images. This paper proposes a unified approach to unsupervised deep representation learning and clustering for segmentation. Our proposed method consists of two phases. In the first phase, we learn deep feature representations of training patches from a target image using joint unsupervised learning (JULE) that alternately clusters representations generated by a CNN and updates the CNN parameters using cluster labels as supervisory signals. We extend JULE to 3D medical images by utilizing 3D convolutions throughout the CNN architecture. In the second phase, we apply k-means to the deep representations from the trained CNN and then project cluster labels to the target image in order to obtain the fully segmented image. We evaluated our methods on three images of lung cancer specimens scanned with micro-computed tomography (micro-CT). The automatic segmentation of pathological regions in micro-CT could further contribute to the pathological examination process. Hence, we aim to automatically divide each image into the regions of invasive carcinoma, noninvasive carcinoma, and normal tissue. Our experiments show the potential abilities of unsupervised deep representation learning for medical image segmentation.",
+    "year": 2018,
+    "authors": [
+      "Takayasu Moriya",
+      "Holger R. Roth",
+      "Shota Nakamura",
+      "Hirohisa Oda",
+      "Kai Nagara",
+      "Masahiro Oda",
+      "Kensaku Mori"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2204.03547v1",
+    "title": "Evaluating Procedures for Establishing Generative Adversarial Network-based Stochastic Image Models in Medical Imaging",
+    "abstract": "Modern generative models, such as generative adversarial networks (GANs), hold tremendous promise for several areas of medical imaging, such as unconditional medical image synthesis, image restoration, reconstruction and translation, and optimization of imaging systems. However, procedures for establishing stochastic image models (SIMs) using GANs remain generic and do not address specific issues relevant to medical imaging. In this work, canonical SIMs that simulate realistic vessels in angiography images are employed to evaluate procedures for establishing SIMs using GANs. The GAN-based SIM is compared to the canonical SIM based on its ability to reproduce those statistics that are meaningful to the particular medically realistic SIM considered. It is shown that evaluating GANs using classical metrics and medically relevant metrics may lead to different conclusions about the fidelity of the trained GANs. This work highlights the need for the development of objective metrics for evaluating GANs.",
+    "year": 2022,
+    "authors": [
+      "Varun A. Kelkar",
+      "Dimitrios S. Gotsis",
+      "Frank J. Brooks",
+      "Kyle J. Myers",
+      "Prabhat KC",
+      "Rongping Zeng",
+      "Mark A. Anastasio"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2410.08918v1",
+    "title": "Wikimedia data for AI: a review of Wikimedia datasets for NLP tasks and AI-assisted editing",
+    "abstract": "Wikimedia content is used extensively by the AI community and within the language modeling community in particular. In this paper, we provide a review of the different ways in which Wikimedia data is curated to use in NLP tasks across pre-training, post-training, and model evaluations. We point to opportunities for greater use of Wikimedia content but also identify ways in which the language modeling community could better center the needs of Wikimedia editors. In particular, we call for incorporating additional sources of Wikimedia data, a greater focus on benchmarks for LLMs that encode Wikimedia principles, and greater multilingualism in Wikimedia-derived datasets.",
+    "year": 2024,
+    "authors": [
+      "Isaac Johnson",
+      "Lucie-Aim\u00e9e Kaffee",
+      "Miriam Redi"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1804.08535v1",
+    "title": "Accelerators for Medical Applications - Radio Frequency Powering",
+    "abstract": "This paper reviews the main types of radio-frequency powering systems which may be used for medical applications. It gives the essentials on vacuum tubes, including tetrodes, klystrons, and inductive output tubes, and the essentials on transistors. The basics of combining systems, splitting systems, and transmission lines are discussed. The paper concludes with a case study specific to medical applications, including overall efficiency and cost analysis regarding the various available technologies.",
+    "year": 2018,
+    "authors": [
+      "Eric Montesinos"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1904.05308v2",
+    "title": "Deep Neural Networks Ensemble for Detecting Medication Mentions in Tweets",
+    "abstract": "Objective: After years of research, Twitter posts are now recognized as an important source of patient-generated data, providing unique insights into population health. A fundamental step to incorporating Twitter data in pharmacoepidemiological research is to automatically recognize medication mentions in tweets. Given that lexical searches for medication names may fail due to misspellings or ambiguity with common words, we propose a more advanced method to recognize them. Methods: We present Kusuri, an Ensemble Learning classifier, able to identify tweets mentioning drug products and dietary supplements. Kusuri (\"medication\" in Japanese) is composed of two modules. First, four different classifiers (lexicon-based, spelling-variant-based, pattern-based and one based on a weakly-trained neural network) are applied in parallel to discover tweets potentially containing medication names. Second, an ensemble of deep neural networks encoding morphological, semantical and long-range dependencies of important words in the tweets discovered is used to make the final decision. Results: On a balanced (50-50) corpus of 15,005 tweets, Kusuri demonstrated performances close to human annotators with 93.7% F1-score, the best score achieved thus far on this corpus. On a corpus made of all tweets posted by 113 Twitter users (98,959 tweets, with only 0.26% mentioning medications), Kusuri obtained 76.3% F1-score. There is not a prior drug extraction system that compares running on such an extremely unbalanced dataset. Conclusion: The system identifies tweets mentioning drug names with performance high enough to ensure its usefulness and ready to be integrated in larger natural language processing systems.",
+    "year": 2019,
+    "authors": [
+      "Davy Weissenbacher",
+      "Abeed Sarker",
+      "Ari Klein",
+      "Karen O'Connor",
+      "Arjun Magge Ranganatha",
+      "Graciela Gonzalez-Hernandez"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2010.03061v1",
+    "title": "A Survey on Recognizing Textual Entailment as an NLP Evaluation",
+    "abstract": "Recognizing Textual Entailment (RTE) was proposed as a unified evaluation framework to compare semantic understanding of different NLP systems. In this survey paper, we provide an overview of different approaches for evaluating and understanding the reasoning capabilities of NLP systems. We then focus our discussion on RTE by highlighting prominent RTE datasets as well as advances in RTE dataset that focus on specific linguistic phenomena that can be used to evaluate NLP systems on a fine-grained level. We conclude by arguing that when evaluating NLP systems, the community should utilize newly introduced RTE datasets that focus on specific linguistic phenomena.",
+    "year": 2020,
+    "authors": [
+      "Adam Poliak"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2408.05664v1",
+    "title": "Training an NLP Scholar at a Small Liberal Arts College: A Backwards Designed Course Proposal",
+    "abstract": "The rapid growth in natural language processing (NLP) over the last couple years has generated student interest and excitement in learning more about the field. In this paper, we present two types of students that NLP courses might want to train. First, an \"NLP engineer\" who is able to flexibly design, build and apply new technologies in NLP for a wide range of tasks. Second, an \"NLP scholar\" who is able to pose, refine and answer questions in NLP and how it relates to the society, while also learning to effectively communicate these answers to a broader audience. While these two types of skills are not mutually exclusive -- NLP engineers should be able to think critically, and NLP scholars should be able to build systems -- we think that courses can differ in the balance of these skills. As educators at Small Liberal Arts Colleges, the strengths of our students and our institution favors an approach that is better suited to train NLP scholars. In this paper we articulate what kinds of skills an NLP scholar should have, and then adopt a backwards design to propose course components that can aid the acquisition of these skills.",
+    "year": 2024,
+    "authors": [
+      "Grusha Prasad",
+      "Forrest Davis"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2110.12093v1",
+    "title": "Circle Representation for Medical Object Detection",
+    "abstract": "Box representation has been extensively used for object detection in computer vision. Such representation is efficacious but not necessarily optimized for biomedical objects (e.g., glomeruli), which play an essential role in renal pathology. In this paper, we propose a simple circle representation for medical object detection and introduce CircleNet, an anchor-free detection framework. Compared with the conventional bounding box representation, the proposed bounding circle representation innovates in three-fold: (1) it is optimized for ball-shaped biomedical objects; (2) The circle representation reduced the degree of freedom compared with box representation; (3) It is naturally more rotation invariant. When detecting glomeruli and nuclei on pathological images, the proposed circle representation achieved superior detection performance and be more rotation-invariant, compared with the bounding box. The code has been made publicly available: https://github.com/hrlblab/CircleNet",
+    "year": 2021,
+    "authors": [
+      "Ethan H. Nguyen",
+      "Haichun Yang",
+      "Ruining Deng",
+      "Yuzhe Lu",
+      "Zheyu Zhu",
+      "Joseph T. Roland",
+      "Le Lu",
+      "Bennett A. Landman",
+      "Agnes B. Fogo",
+      "Yuankai Huo"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2402.01186v1",
+    "title": "Ambient-Pix2PixGAN for Translating Medical Images from Noisy Data",
+    "abstract": "Image-to-image translation is a common task in computer vision and has been rapidly increasing the impact on the field of medical imaging. Deep learning-based methods that employ conditional generative adversarial networks (cGANs), such as Pix2PixGAN, have been extensively explored to perform image-to-image translation tasks. However, when noisy medical image data are considered, such methods cannot be directly applied to produce clean images. Recently, an augmented GAN architecture named AmbientGAN has been proposed that can be trained on noisy measurement data to synthesize high-quality clean medical images. Inspired by AmbientGAN, in this work, we propose a new cGAN architecture, Ambient-Pix2PixGAN, for performing medical image-to-image translation tasks by use of noisy measurement data. Numerical studies that consider MRI-to-PET translation are conducted. Both traditional image quality metrics and task-based image quality metrics are employed to assess the proposed Ambient-Pix2PixGAN. It is demonstrated that our proposed Ambient-Pix2PixGAN can be successfully trained on noisy measurement data to produce high-quality translated images in target imaging modality.",
+    "year": 2024,
+    "authors": [
+      "Wentao Chen",
+      "Xichen Xu",
+      "Jie Luo",
+      "Weimin Zhou"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2302.04700v1",
+    "title": "Augmenting NLP data to counter Annotation Artifacts for NLI Tasks",
+    "abstract": "In this paper, we explore Annotation Artifacts - the phenomena wherein large pre-trained NLP models achieve high performance on benchmark datasets but do not actually \"solve\" the underlying task and instead rely on some dataset artifacts (same across train, validation, and test sets) to figure out the right answer. We explore this phenomenon on the well-known Natural Language Inference task by first using contrast and adversarial examples to understand limitations to the model's performance and show one of the biases arising from annotation artifacts (the way training data was constructed by the annotators). We then propose a data augmentation technique to fix this bias and measure its effectiveness.",
+    "year": 2023,
+    "authors": [
+      "Armaan Singh Bhullar"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1910.02923v2",
+    "title": "A Survey on Active Learning and Human-in-the-Loop Deep Learning for Medical Image Analysis",
+    "abstract": "Fully automatic deep learning has become the state-of-the-art technique for many tasks including image acquisition, analysis and interpretation, and for the extraction of clinically useful information for computer-aided detection, diagnosis, treatment planning, intervention and therapy. However, the unique challenges posed by medical image analysis suggest that retaining a human end user in any deep learning enabled system will be beneficial. In this review we investigate the role that humans might play in the development and deployment of deep learning enabled diagnostic applications and focus on techniques that will retain a significant input from a human end user. Human-in-the-Loop computing is an area that we see as increasingly important in future research due to the safety-critical nature of working in the medical domain. We evaluate four key areas that we consider vital for deep learning in the clinical practice: (1) Active Learning to choose the best data to annotate for optimal model performance; (2) Interaction with model outputs - using iterative feedback to steer models to optima for a given prediction and offering meaningful ways to interpret and respond to predictions; (3) Practical considerations - developing full scale applications and the key considerations that need to be made before deployment; (4) Future Prospective and Unanswered Questions - knowledge gaps and related research fields that will benefit human-in-the-loop computing as they evolve. We offer our opinions on the most promising directions of research and how various aspects of each area might be unified towards common goals.",
+    "year": 2019,
+    "authors": [
+      "Samuel Budd",
+      "Emma C Robinson",
+      "Bernhard Kainz"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2105.13704v1",
+    "title": "Natural Language Processing 4 All (NLP4All): A New Online Platform for Teaching and Learning NLP Concepts",
+    "abstract": "Natural Language Processing offers new insights into language data across almost all disciplines and domains, and allows us to corroborate and/or challenge existing knowledge. The primary hurdles to widening participation in and use of these new research tools are, first, a lack of coding skills in students across K-16, and in the population at large, and second, a lack of knowledge of how NLP-methods can be used to answer questions of disciplinary interest outside of linguistics and/or computer science. To broaden participation in NLP and improve NLP-literacy, we introduced a new tool web-based tool called Natural Language Processing 4 All (NLP4All). The intended purpose of NLP4All is to help teachers facilitate learning with and about NLP, by providing easy-to-use interfaces to NLP-methods, data, and analyses, making it possible for non- and novice-programmers to learn NLP concepts interactively.",
+    "year": 2021,
+    "authors": [
+      "Rebekah Baglini",
+      "Arthur Hjorth"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2007.05295v1",
+    "title": "Deep Learning-Based Regression and Classification for Automatic Landmark Localization in Medical Images",
+    "abstract": "In this study, we propose a fast and accurate method to automatically localize anatomical landmarks in medical images. We employ a global-to-local localization approach using fully convolutional neural networks (FCNNs). First, a global FCNN localizes multiple landmarks through the analysis of image patches, performing regression and classification simultaneously. In regression, displacement vectors pointing from the center of image patches towards landmark locations are determined. In classification, presence of landmarks of interest in the patch is established. Global landmark locations are obtained by averaging the predicted displacement vectors, where the contribution of each displacement vector is weighted by the posterior classification probability of the patch that it is pointing from. Subsequently, for each landmark localized with global localization, local analysis is performed. Specialized FCNNs refine the global landmark locations by analyzing local sub-images in a similar manner, i.e. by performing regression and classification simultaneously and combining the results. Evaluation was performed through localization of 8 anatomical landmarks in CCTA scans, 2 landmarks in olfactory MR scans, and 19 landmarks in cephalometric X-rays. We demonstrate that the method performs similarly to a second observer and is able to localize landmarks in a diverse set of medical images, differing in image modality, image dimensionality, and anatomical coverage.",
+    "year": 2020,
+    "authors": [
+      "Julia M. H. Noothout",
+      "Bob D. de Vos",
+      "Jelmer M. Wolterink",
+      "Elbrich M. Postma",
+      "Paul A. M. Smeets",
+      "Richard A. P. Takx",
+      "Tim Leiner",
+      "Max A. Viergever",
+      "Ivana I\u0161gum"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2306.01827v2",
+    "title": "Active Learning on Medical Image",
+    "abstract": "The development of medical science greatly depends on the increased utilization of machine learning algorithms. By incorporating machine learning, the medical imaging field can significantly improve in terms of the speed and accuracy of the diagnostic process. Computed tomography (CT), magnetic resonance imaging (MRI), X-ray imaging, ultrasound imaging, and positron emission tomography (PET) are the most commonly used types of imaging data in the diagnosis process, and machine learning can aid in detecting diseases at an early stage. However, training machine learning models with limited annotated medical image data poses a challenge. The majority of medical image datasets have limited data, which can impede the pattern-learning process of machine-learning algorithms. Additionally, the lack of labeled data is another critical issue for machine learning. In this context, active learning techniques can be employed to address the challenge of limited annotated medical image data. Active learning involves iteratively selecting the most informative samples from a large pool of unlabeled data for annotation by experts. By actively selecting the most relevant and informative samples, active learning reduces the reliance on large amounts of labeled data and maximizes the model's learning capacity with minimal human labeling effort. By incorporating active learning into the training process, medical imaging machine learning models can make more efficient use of the available labeled data, improving their accuracy and performance. This approach allows medical professionals to focus their efforts on annotating the most critical cases, while the machine learning model actively learns from these annotated samples to improve its diagnostic capabilities.",
+    "year": 2023,
+    "authors": [
+      "Angona Biswas",
+      "MD Abdullah Al Nasim",
+      "Md Shahin Ali",
+      "Ismail Hossain",
+      "Md Azim Ullah",
+      "Sajedul Talukder"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1804.08516v1",
+    "title": "Ion Sources for Medical Applications",
+    "abstract": "Ion sources are key components of accelerators devoted to different types of medical applications: hadron-therapy facilities (accelerating protons or carbon ions), high-intensity accelerators for boron-neutron capture therapy (using intense proton beams), and facilities for isotope production (using different ion species). The three types of application present different requirements in terms of ion beam quality, reproducibility, and beam availability. Different characteristics of ion sources will be described, along with the reasons why they are particularly interesting or largely used.",
+    "year": 2018,
+    "authors": [
+      "Santo Gammino"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2310.15741v1",
+    "title": "Interpretable Medical Image Classification using Prototype Learning and Privileged Information",
+    "abstract": "Interpretability is often an essential requirement in medical imaging. Advanced deep learning methods are required to address this need for explainability and high performance. In this work, we investigate whether additional information available during the training process can be used to create an understandable and powerful model. We propose an innovative solution called Proto-Caps that leverages the benefits of capsule networks, prototype learning and the use of privileged information. Evaluating the proposed solution on the LIDC-IDRI dataset shows that it combines increased interpretability with above state-of-the-art prediction performance. Compared to the explainable baseline model, our method achieves more than 6 % higher accuracy in predicting both malignancy (93.0 %) and mean characteristic features of lung nodules. Simultaneously, the model provides case-based reasoning with prototype representations that allow visual validation of radiologist-defined attributes.",
+    "year": 2023,
+    "authors": [
+      "Luisa Gallee",
+      "Meinrad Beer",
+      "Michael Goetz"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1804.08983v1",
+    "title": "Medical Physics Commissioning",
+    "abstract": "The medical commissioning is an important step to bring a particle gantry into clinical operation for tumour treatments. This involves the parametrization and characterization of all relevant systems including the beam delivery, the patient table, the imaging systems and the connection to all required software components. This article is limited to necessary tasks for the beam delivery system of a pencil beam scanning system. Usually the commissioning starts with the characterization of the unscanned beam and the calibration of the beam energy. The following steps are the parametrization of the scanning system, the commissioning of the beam position monitoring system and characterization of the spot size, all requiring precisions better than 1 mm. The commissioning effort for these tasks depends also on the gantry topology. Finally, the calibration of the dose measurement system ensures that any dose distribution can be delivered with an absolute precision better than 1%.",
+    "year": 2018,
+    "authors": [
+      "David Meer"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2402.16977v2",
+    "title": "Dealing with Data for RE: Mitigating Challenges while using NLP and Generative AI",
+    "abstract": "Across the dynamic business landscape today, enterprises face an ever-increasing range of challenges. These include the constantly evolving regulatory environment, the growing demand for personalization within software applications, and the heightened emphasis on governance. In response to these multifaceted demands, large enterprises have been adopting automation that spans from the optimization of core business processes to the enhancement of customer experiences. Indeed, Artificial Intelligence (AI) has emerged as a pivotal element of modern software systems. In this context, data plays an indispensable role. AI-centric software systems based on supervised learning and operating at an industrial scale require large volumes of training data to perform effectively. Moreover, the incorporation of generative AI has led to a growing demand for adequate evaluation benchmarks. Our experience in this field has revealed that the requirement for large datasets for training and evaluation introduces a host of intricate challenges. This book chapter explores the evolving landscape of Software Engineering (SE) in general, and Requirements Engineering (RE) in particular, in this era marked by AI integration. We discuss challenges that arise while integrating Natural Language Processing (NLP) and generative AI into enterprise-critical software systems. The chapter provides practical insights, solutions, and examples to equip readers with the knowledge and tools necessary for effectively building solutions with NLP at their cores. We also reflect on how these text data-centric tasks sit together with the traditional RE process. We also highlight new RE tasks that may be necessary for handling the increasingly important text data-centricity involved in developing software systems.",
+    "year": 2024,
+    "authors": [
+      "Smita Ghaisas",
+      "Anmol Singhal"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2403.16499v2",
+    "title": "Self-Supervised Learning for Medical Image Data with Anatomy-Oriented Imaging Planes",
+    "abstract": "Self-supervised learning has emerged as a powerful tool for pretraining deep networks on unlabeled data, prior to transfer learning of target tasks with limited annotation. The relevance between the pretraining pretext and target tasks is crucial to the success of transfer learning. Various pretext tasks have been proposed to utilize properties of medical image data (e.g., three dimensionality), which are more relevant to medical image analysis than generic ones for natural images. However, previous work rarely paid attention to data with anatomy-oriented imaging planes, e.g., standard cardiac magnetic resonance imaging views. As these imaging planes are defined according to the anatomy of the imaged organ, pretext tasks effectively exploiting this information can pretrain the networks to gain knowledge on the organ of interest. In this work, we propose two complementary pretext tasks for this group of medical image data based on the spatial relationship of the imaging planes. The first is to learn the relative orientation between the imaging planes and implemented as regressing their intersecting lines. The second exploits parallel imaging planes to regress their relative slice locations within a stack. Both pretext tasks are conceptually straightforward and easy to implement, and can be combined in multitask learning for better representation learning. Thorough experiments on two anatomical structures (heart and knee) and representative target tasks (semantic segmentation and classification) demonstrate that the proposed pretext tasks are effective in pretraining deep networks for remarkably boosted performance on the target tasks, and superior to other recent approaches.",
+    "year": 2024,
+    "authors": [
+      "Tianwei Zhang",
+      "Dong Wei",
+      "Mengmeng Zhu",
+      "Shi Gu",
+      "Yefeng Zheng"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2204.07288v1",
+    "title": "Characterizing the Efficiency vs. Accuracy Trade-off for Long-Context NLP Models",
+    "abstract": "With many real-world applications of Natural Language Processing (NLP) comprising of long texts, there has been a rise in NLP benchmarks that measure the accuracy of models that can handle longer input sequences. However, these benchmarks do not consider the trade-offs between accuracy, speed, and power consumption as input sizes or model sizes are varied. In this work, we perform a systematic study of this accuracy vs. efficiency trade-off on two widely used long-sequence models - Longformer-Encoder-Decoder (LED) and Big Bird - during fine-tuning and inference on four datasets from the SCROLLS benchmark. To study how this trade-off differs across hyperparameter settings, we compare the models across four sequence lengths (1024, 2048, 3072, 4096) and two model sizes (base and large) under a fixed resource budget. We find that LED consistently achieves better accuracy at lower energy costs than Big Bird. For summarization, we find that increasing model size is more energy efficient than increasing sequence length for higher accuracy. However, this comes at the cost of a large drop in inference speed. For question answering, we find that smaller models are both more efficient and more accurate due to the larger training batch sizes possible under a fixed resource budget.",
+    "year": 2022,
+    "authors": [
+      "Phyllis Ang",
+      "Bhuwan Dhingra",
+      "Lisa Wu Wills"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2102.13461v1",
+    "title": "Methods for the Design and Evaluation of HCI+NLP Systems",
+    "abstract": "HCI and NLP traditionally focus on different evaluation methods. While HCI involves a small number of people directly and deeply, NLP traditionally relies on standardized benchmark evaluations that involve a larger number of people indirectly. We present five methodological proposals at the intersection of HCI and NLP and situate them in the context of ML-based NLP models. Our goal is to foster interdisciplinary collaboration and progress in both fields by emphasizing what the fields can learn from each other.",
+    "year": 2021,
+    "authors": [
+      "Hendrik Heuer",
+      "Daniel Buschek"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2306.14483v1",
+    "title": "Medical Federated Model with Mixture of Personalized and Sharing Components",
+    "abstract": "Although data-driven methods usually have noticeable performance on disease diagnosis and treatment, they are suspected of leakage of privacy due to collecting data for model training. Recently, federated learning provides a secure and trustable alternative to collaboratively train model without any exchange of medical data among multiple institutes. Therefore, it has draw much attention due to its natural merit on privacy protection. However, when heterogenous medical data exists between different hospitals, federated learning usually has to face with degradation of performance. In the paper, we propose a new personalized framework of federated learning to handle the problem. It successfully yields personalized models based on awareness of similarity between local data, and achieves better tradeoff between generalization and personalization than existing methods. After that, we further design a differentially sparse regularizer to improve communication efficiency during procedure of model training. Additionally, we propose an effective method to reduce the computational cost, which improves computation efficiency significantly. Furthermore, we collect 5 real medical datasets, including 2 public medical image datasets and 3 private multi-center clinical diagnosis datasets, and evaluate its performance by conducting nodule classification, tumor segmentation, and clinical risk prediction tasks. Comparing with 13 existing related methods, the proposed method successfully achieves the best model performance, and meanwhile up to 60% improvement of communication efficiency. Source code is public, and can be accessed at: https://github.com/ApplicationTechnologyOfMedicalBigData/pFedNet-code.",
+    "year": 2023,
+    "authors": [
+      "Yawei Zhao",
+      "Qinghe Liu",
+      "Xinwang Liu",
+      "Kunlun He"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/2006.13041v2",
+    "title": "Byzantine-Resilient High-Dimensional Federated Learning",
+    "abstract": "We study stochastic gradient descent (SGD) with local iterations in the presence of malicious/Byzantine clients, motivated by the federated learning. The clients, instead of communicating with the central server in every iteration, maintain their local models, which they update by taking several SGD iterations based on their own datasets and then communicate the net update with the server, thereby achieving communication-efficiency. Furthermore, only a subset of clients communicate with the server, and this subset may be different at different synchronization times. The Byzantine clients may collaborate and send arbitrary vectors to the server to disrupt the learning process. To combat the adversary, we employ an efficient high-dimensional robust mean estimation algorithm from Steinhardt et al.~\\cite[ITCS 2018]{Resilience_SCV18} at the server to filter-out corrupt vectors; and to analyze the outlier-filtering procedure, we develop a novel matrix concentration result that may be of independent interest.\n  We provide convergence analyses for strongly-convex and non-convex smooth objectives in the heterogeneous data setting, where different clients may have different local datasets, and we do not make any probabilistic assumptions on data generation. We believe that ours is the first Byzantine-resilient algorithm and analysis with local iterations. We derive our convergence results under minimal assumptions of bounded variance for SGD and bounded gradient dissimilarity (which captures heterogeneity among local datasets). We also extend our results to the case when clients compute full-batch gradients.",
+    "year": 2020,
+    "authors": [
+      "Deepesh Data",
+      "Suhas Diggavi"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1603.06828v2",
+    "title": "Robust principal graphs for data approximation",
+    "abstract": "Revealing hidden geometry and topology in noisy data sets is a challenging task. Elastic principal graph is a computationally efficient and flexible data approximator based on embedding a graph into the data space and minimizing the energy functional penalizing the deviation of graph nodes both from data points and from pluri-harmonic configuration (generalization of linearity). The structure of principal graph is learned from data by application of a topological grammar which in the simplest case leads to the construction of principal curves or trees. In order to more efficiently cope with noise and outliers, here we suggest using a trimmed data approximation term to increase the robustness of the method. The modification of the method that we suggest does not affect either computational efficiency or general convergence properties of the original elastic graph method. The trimmed elastic energy functional remains a Lyapunov function for the optimization algorithm. On several examples of complex data distributions we demonstrate how the robust principal graphs learn the global data structure and show the advantage of using the trimmed data approximation term for the construction of principal graphs and other popular data approximators.",
+    "year": 2016,
+    "authors": [
+      "A. N. Gorban",
+      "E. M. Mirkes",
+      "A. Zinovyev"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
+  },
+  {
+    "paperId": "http://arxiv.org/abs/1810.00551v1",
+    "title": "Generative Adversarial Network for Medical Images (MI-GAN)",
+    "abstract": "Deep learning algorithms produces state-of-the-art results for different machine learning and computer vision tasks. To perform well on a given task, these algorithms require large dataset for training. However, deep learning algorithms lack generalization and suffer from over-fitting whenever trained on small dataset, especially when one is dealing with medical images. For supervised image analysis in medical imaging, having image data along with their corresponding annotated ground-truths is costly as well as time consuming since annotations of the data is done by medical experts manually. In this paper, we propose a new Generative Adversarial Network for Medical Imaging (MI-GAN). The MI-GAN generates synthetic medical images and their segmented masks, which can then be used for the application of supervised analysis of medical images. Particularly, we present MI-GAN for synthesis of retinal images. The proposed method generates precise segmented images better than the existing techniques. The proposed model achieves a dice coefficient of 0.837 on STARE dataset and 0.832 on DRIVE dataset which is state-of-the-art performance on both the datasets.",
+    "year": 2018,
+    "authors": [
+      "Talha Iqbal",
+      "Hazrat Ali"
+    ],
+    "citationCount": 0,
+    "doi": null,
+    "references": []
   }
 ]
